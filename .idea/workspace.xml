@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/HttpErrorsMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/CarProfileConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Assunto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Autor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Livro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAssunto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/parsers/ParserObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/AssuntoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/AutorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAssuntoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAutorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroAssuntoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroAutorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AssuntoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AutorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/LivroController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/AssuntoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/AutorDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/LivroDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/mappers/AutorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/mappers/LivroMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2sfxsYsysTXCpVo2hjJWEJ1ex5b" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AutorControllerTest.executor": "Debug",
+    "Maven.library-profile [clean].executor": "Run",
+    "Maven.library-profile [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system/library-profile/src/test/java/br/com/mgobo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo" />
+      <recent name="$PROJECT_DIR$/library-profile/src/main/java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Livro" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.mgobo.web.dto" />
+      <recent name="br.com.mgobo.api.repository" />
+      <recent name="br.com.mgobo.api.service" />
+      <recent name="br.com.mgobo.api.entities" />
+      <recent name="br.com.mgobo.web.mappers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.AutorControllerTest">
+    <configuration name="AutorControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-profile" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AutorControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryProfileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="library-profile" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.mgobo.LibraryProfileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AutorControllerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="" />
+      <created>1738860640732</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738860640732</updated>
+      <workItem from="1738860641785" duration="2880000" />
+      <workItem from="1738865150937" duration="3705000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AssuntoController.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
