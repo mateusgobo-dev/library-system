@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/HttpErrorsMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/CarProfileConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Assunto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Autor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/Livro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAssunto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/parsers/ParserObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/AssuntoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/AutorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAssuntoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAutorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroAssuntoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroAutorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AssuntoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AutorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/LivroController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/AssuntoDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/AutorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/dto/LivroDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/mappers/AutorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/mappers/LivroMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738860640732</updated>
       <workItem from="1738860641785" duration="2880000" />
-      <workItem from="1738865150937" duration="3705000" />
+      <workItem from="1738865150937" duration="3831000" />
     </task>
     <servers />
   </component>
