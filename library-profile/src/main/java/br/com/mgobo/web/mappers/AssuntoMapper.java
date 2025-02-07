@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface AssuntoMapper {
     AssuntoMapper INSTANCE = Mappers.getMapper(AssuntoMapper.class);
 
-    Assunto toEntity(AssuntoDto autorDto);
+    Assunto toEntity(AssuntoDto assuntoDto);
 
-    AssuntoDto toDto(Assunto autor);
+    AssuntoDto toDto(Assunto assunto);
 }

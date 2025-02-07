@@ -1,0 +1,59 @@
+.usuario-form{
+    margin: 0 auto;
+    margin-top: 18px 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    padding: 0 8px;
+}
+
+.usuario-form h1 {
+    margin: 14px 0
+
+}
+
+.usuario-form label {
+    margin: 5px;
+    display: flex;
+}
+
+.usuario-form span {
+    margin: 8px 0;
+}
+
+.area-buttons button{
+    margin-right: 12px;
+    margin-top: 14px;
+    margin-left: 0px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.voltar {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 24px;
+    background-color: #116FEB;
+    text-decoration: none;
+    color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.area-buttons a {
+    text-decoration: none;
+    color: Black;
+}
+
+.area-buttons :hover{
+    background-color: brown;
+    color: White;
+    transition: all 0.5s;
+}

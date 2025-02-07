@@ -25,7 +25,7 @@ public class LivroAssuntoService {
             livroAssunto = livroAssuntoRepository.save(livroAssunto);
             return ResponseEntity.created(new URI("/find/%s".formatted(livroAssunto.getId()))).body(CREATED.getMessage().formatted(livroAssunto.getAssunto().getDescricao() + " x" + livroAssunto.getLivro().getTitulo()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("BrandCategoryService[save]", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroAssuntoService[save]", e.getMessage()));
         }
     }
 
@@ -35,7 +35,7 @@ public class LivroAssuntoService {
             livroAssunto = livroAssuntoRepository.save(livroAssunto);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(ACCEPTED.getMessage().formatted(livroAssunto.getAssunto().getDescricao() + " x" + livroAssunto.getLivro().getTitulo()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("BrandCategoryService[update]", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroAssuntoService[update]", e.getMessage()));
         }
     }
 
@@ -43,7 +43,7 @@ public class LivroAssuntoService {
         try {
             return ResponseEntity.ok(livroAssuntoRepository.findAll());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("BrandCategoryService[findAll]", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroAssuntoService[findAll]", e.getMessage()));
         }
     }
 
@@ -51,7 +51,7 @@ public class LivroAssuntoService {
         try {
             return ResponseEntity.ok(livroAssuntoRepository.findById(id));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("BrandCategoryService[findById %s]".formatted(id), e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroAssuntoService[findById %s]".formatted(id), e.getMessage()));
         }
     }
 }

@@ -8,7 +8,7 @@ public record LivroDto(Long id,
                        String editora,
                        Integer edicao,
                        String anoPublicacao,
-                       AssuntoDto assuntoDto,
-                       AutorDto autorDto) implements Serializable {
+                       Long assuntoId,
+                       Long autorId) implements Serializable {
     private static final long serialVersionUID	= 1L;
 }

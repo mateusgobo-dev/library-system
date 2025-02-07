@@ -1,0 +1,56 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.lista-carros{
+    margin: 14px auto;
+}
+
+.lista-carros article{
+    width: 100%;
+    background-color: white;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.lista-carros strong{
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 22px;
+    display: block;
+}
+
+.lista-carros img {
+    width: 900px;
+    height:350px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/*.lista-carros a{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    padding: 10px 0;*/
+/*    font-size: 14px;*/
+/*    background-color: Black;*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*    border-bottom-left-radius: 8px;*/
+/*    border-bottom-right-radius: 8px;*/
+/*    transition: all 0.5s;*/
+/*}*/
+
+/*.lista-carros a:hover{*/
+/*    background-color: brown;*/
+/*    color: Black;*/
+/*    transition: all 0.5s;*/
+/*}*/
+

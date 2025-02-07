@@ -68,7 +68,7 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testCreate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", 1, "2024", assuntoDto, autorDto);
+        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", 1, "2024", assuntoDto.id(), autorDto.id());
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(parserObject.toJson(livroDto)));
@@ -85,7 +85,7 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testUpdate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(1L, "A ARTE DA PAZ", "BRASIL", 2, "2023", assuntoDto, autorDto);
+        LivroDto livroDto = new LivroDto(1L, "A ARTE DA PAZ", "BRASIL", 2, "2023", assuntoDto.id(), autorDto.id());
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(parserObject.toJson(livroDto)));
