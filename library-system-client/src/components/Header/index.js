@@ -23,7 +23,7 @@ function Header(){
     return(
         <header>
             <div style={{float: "left", width: "60%"}}>
-                <Link className="logo" to="/" style={{float: "Left"}}>Car system</Link>
+                <Link className="logo" to="/" style={{float: "Left"}}>Biblioteca Online</Link>
             </div>
             <div style={{float: "left", width: "20%"}}>
                 {<label className="welcome">Bem vindo(a), {usuario.name}</label>}

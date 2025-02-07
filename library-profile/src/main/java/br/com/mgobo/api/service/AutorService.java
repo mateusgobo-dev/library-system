@@ -45,7 +45,7 @@ public class AutorService {
 
     public ResponseEntity<?> findAll() {
         try {
-            List<Autor> autores = autorRepositoryImpl.findAll();
+            List<Autor> autores = autorRepository.findAll();
             return !autores.isEmpty() ? ResponseEntity.ok(autores.stream().map(INSTANCE::toDto))
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de autores...");
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class AutorService {
 
     public ResponseEntity<?> findById(Long id) {
         try {
-            return ResponseEntity.ok(INSTANCE.toDto(this.autorRepositoryImpl.findById(id)));
+            return ResponseEntity.ok(INSTANCE.toDto(this.autorRepository.findById(id).get()));
         } catch (Exception ex) {
             if (ex.getCause() instanceof NoResultException) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum assunto encontrado...");

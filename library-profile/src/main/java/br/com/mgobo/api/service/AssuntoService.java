@@ -47,7 +47,7 @@ public class AssuntoService {
 
     public ResponseEntity<?> findAll() {
         try {
-            List<Assunto> assuntos = this.assuntoRepositoryImpl.findAll();
+            List<Assunto> assuntos = this.assuntoRepository.findAll();
             return !assuntos.isEmpty()
                     ? ResponseEntity.ok(assuntos.stream().map(INSTANCE::toDto))
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de assuntos...");
@@ -58,7 +58,7 @@ public class AssuntoService {
 
     public ResponseEntity<?> findById(Long id) {
         try {
-            return ResponseEntity.ok(INSTANCE.toDto(this.assuntoRepositoryImpl.findById(id)));
+            return ResponseEntity.ok(INSTANCE.toDto(this.assuntoRepository.findById(id).get()));
         } catch (Exception ex) {
             if (ex.getCause() instanceof NoResultException) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum assunto encontrado...");

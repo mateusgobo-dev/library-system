@@ -1,212 +1,173 @@
 import {React, useEffect, useState} from "react";
-import carsystem_api from "../../services/carsystem_api";
+import librarysystem_api from "../../services/librarysystem_api";
 import {Link, useParams} from "react-router-dom";
 import "./home.css"
 import {toast} from "react-toastify";
 
-function recuperarMarcas() {
-    async function recuperarMarcasPromisse() {
-        await carsystem_api.get("/api/v1/brand")
-            .then(response => {
-                const marcas = response.data
-                localStorage.removeItem("@marcas")
-                localStorage.setItem("@marcas", JSON.stringify(marcas));
-            }).catch(reason => {
-                toast.error(`Falha ao recuperar marcas, erro => ${reason.error}`)
-            });
-    }
-
-    recuperarMarcasPromisse();
-}
-
-function recuperarCategorias() {
-    async function recuperarCategoriasPromisse() {
-        await carsystem_api.get("/api/v1/category")
-            .then(response => {
-                const categorias = response.data;
-                localStorage.removeItem("@categorias")
-                localStorage.setItem("@categorias", JSON.stringify(categorias));
-            }).catch(reason => {
-                toast.error(`Falha ao recuperar categorias, erro => ${reason.error}`)
-            });
-    }
-
-    recuperarCategoriasPromisse();
-}
-
-function recuperarCores() {
-    async function recuperarCoresPromisse() {
-        await carsystem_api.get("/api/v1/color")
-            .then(response => {
-                const cores = response.data;
-
-                localStorage.removeItem("@cores")
-                localStorage.setItem("@cores", JSON.stringify(cores));
-            }).catch(reason => {
-                toast.error(`Falha ao recuperar cores, erro => ${reason.error}`)
-            });
-    }
-
-    recuperarCoresPromisse();
-}
-
-function validarPreenchimentoFormulario(veiculo, potencia) {
+function validarPreenchimentoFormulario(titulo, editora) {
     let isValid = true;
-    if (veiculo === undefined || veiculo === '') {
-        toast.warn("Informe o veículo");
-        document.getElementById('veiculo').focus();
+    if (titulo === undefined || titulo === '') {
+        toast.warn("Informe o título");
+        document.getElementById('titulo').focus();
         isValid = false;
-    } else if (potencia === undefined || potencia === '') {
-        toast.warn("Informe a potencia");
-        document.getElementById('potencia').focus();
+    } else if (editora === undefined || editora === '') {
+        toast.warn("Informe a editora");
+        document.getElementById('editora').focus();
         isValid = false;
     }
     return isValid;
 }
 
 function Home() {
-    recuperarCores();
-    recuperarCategorias();
-    recuperarMarcas();
-
     const {rule} = useParams();
     const [id, setId] = useState(0);
-    const [carros, setCarros] = useState([]);
+    const [livros, setLivros] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [colors] = useState(JSON.parse(localStorage.getItem("@cores")));
-    const [brands] = useState(JSON.parse(localStorage.getItem("@marcas")));
-    const [categories] = useState(JSON.parse(localStorage.getItem("@categorias")));
-    const [potencia, setPotencia] = useState("");
-    const [veiculo, setVeiculo] = useState("");
-    const [cor, setCor] = useState(0);
-    const [marca, setMarca] = useState(0);
-    const [categoria, setCategoria] = useState(0);
-    const [exibirNovoCarro, setExibirNovoCarro] = useState(true);
+    const [assuntos, setAssuntos] = useState([]);
+    const [autores, setAutores] = useState([]);
+    const [editora, setEditora] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [assunto, setAssunto] = useState(0);
+    const [edicao, setEdicao] = useState(0);
+    const [autor, setAutor] = useState(0);
+    const [exibirNovoLivro, setExibirNovoLivro] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        console.log(rule)
-        if (rule === undefined || rule === 'list' || rule === '/') {
-            async function loadCarros() {
-                const response = await carsystem_api.get("/api/v1/car");
-                setCarros(response.data)
-                setLoading(false);
-            }
 
-            loadCarros();
-            if (colors !== null && colors.length > 0) {
-                setCor(parseInt(JSON.stringify(colors[0].id)));
+        librarysystem_api.get("/api/v1/assuntos").then(response => {
+            if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
+                setAssuntos(response.data);
+                localStorage.removeItem("@assuntos")
+                localStorage.setItem("@assuntos", JSON.stringify(response.data));
             }
-            if (marca !== null && brands.length > 0) {
-                setMarca(parseInt(JSON.stringify(brands[0].id)));
+        }).catch(error => {
+            setError(error.response.statusCode === 404 ? "Sem registros de assuntos" : "Falha no acesso a area de livros");
+        });
+
+        librarysystem_api.get("/api/v1/autores").then(response => {
+            if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
+                setAutores(response.data);
+                localStorage.removeItem("@autores")
+                localStorage.setItem("@autores", JSON.stringify(response.data));
             }
-            if (categories !== null && categories.length > 0) {
-                setCategoria(parseInt(JSON.stringify(categories[0].id)));
+        }).catch(error => {
+            setError(error.response.statusCode === 404 ? "Sem registros de autores" : "Falha no acesso a area de livros");
+        });
+        librarysystem_api.get("/api/v1/livros").then(response => {
+            if (JSON.stringify(livros) !== JSON.stringify(response.data)) {
+                setLivros(response.data)
             }
-            setExibirNovoCarro((colors !== null && colors.length > 0) && (brands !== null && brands.length > 0) && (categories !== null && categories.length > 0));
-        } else if (rule === 'create') {
+        }).catch(error => {
+            setError(error.response.statusCode === 404 ? "Sem registros de livros" : "Falha no acesso a area de livros");
+        });
+        console.log(`Dados: ${JSON.stringify(assuntos)} - ${JSON.stringify(autores)}`);
+        if (assuntos !== null && assuntos.length > 0) {
+            setAssunto(parseInt(JSON.stringify(assuntos[0].id)));
+        }
+        if (autores !== null && autores.length > 0) {
+            setAutor(parseInt(JSON.stringify(autores[0].id)));
+        }
+
+        if (rule === 'create') {
             setLoading(false)
         } else if (rule === 'edit') {
-            const carEdit = localStorage.getItem("@car");
-            if (carEdit !== undefined && carEdit !== '') {
-                let carEditAsObject = JSON.parse(carEdit);
-                setId(carEditAsObject.id);
-                setPotencia(carEditAsObject.potency);
-                setVeiculo(carEditAsObject.vehicle);
-                setCor(carEditAsObject.color.id)
-                setMarca(carEditAsObject.brandCategory.brand.id)
-                setCategoria(carEditAsObject.brandCategory.category.id);
+            const livroEdit = localStorage.getItem("@livro");
+            if (livroEdit !== undefined && livroEdit !== '') {
+                let livroEditAsObject = JSON.parse(livroEdit);
+                setId(livroEditAsObject.id);
+                setEditora(livroEditAsObject.potency);
+                setTitulo(livroEditAsObject.vehicle);
             }
-            setLoading(false);
         }
-    }, [rule, brands, categories, colors, marca, cor, categoria]);
+        setLoading(false);
+        setExibirNovoLivro((assuntos !== null && assuntos.length > 0) && (autores !== null && autores.length > 0));
+    }, [assuntos, autores, livros, rule, exibirNovoLivro]);
 
-    function editCarro(carro) {
-        localStorage.setItem("@car", JSON.stringify(carro));
+    function editLivros(livro) {
+        localStorage.setItem("@livro", JSON.stringify(livro));
         window.location.href = '/edit';
     }
 
-    function salvarCarro() {
-        let validarFormulario = validarPreenchimentoFormulario(veiculo, potencia);
+    function salvarLivros() {
+        let validarFormulario = validarPreenchimentoFormulario(titulo, editora);
         if (validarFormulario) {
-            const carDto = {
+            const livroDto = {
                 id: rule === 'edit' ? id : null,
-                vehicle: veiculo,
-                potency: potencia,
-                colorId: cor,
-                brandId: marca,
-                categoryId: categoria
+                titulo: titulo,
+                editora: editora,
+                assuntoId: assunto,
+                autorId: autor
             }
-
-            async function saveCar() {
-                if(rule === 'create') {
-                    await carsystem_api.post("/api/v1/car", JSON.stringify(carDto))
+            async function saveLivros() {
+                if (rule === 'create') {
+                    await librarysystem_api.post("/api/v1/livros", JSON.stringify(livroDto))
                         .then(response => {
                             if (response.status === 201) {
-                                toast.info(`Veículo ${veiculo} criado com sucesso`);
+                                toast.info(`Veículo ${titulo} criado com sucesso`);
                             } else {
-                                toast.error(`Erro ao salvar veículo ${veiculo}, erro => ${response.status} - ${response.statusText}`);
+                                toast.error(`Erro ao salvar livro ${titulo}, erro => ${response.status} - ${response.statusText}`);
                             }
                         })
                         .catch(reason => {
-                            toast.error(`Erro ao salvar veículo ${veiculo}, erro => ${reason.error}`);
+                            toast.error(`Erro ao salvar livro ${titulo}, erro => ${reason.error}`);
                         });
-                }else{
-                    await carsystem_api.put("/api/v1/car", JSON.stringify(carDto))
+                } else {
+                    await librarysystem_api.put("/api/v1/livros", JSON.stringify(livroDto))
                         .then(response => {
                             if (response.status === 202) {
-                                toast.info(`Veículo ${veiculo} alterado com sucesso`);
+                                toast.info(`Veículo ${titulo} alterado com sucesso`);
                             } else {
-                                toast.error(`Erro ao alterar veículo ${veiculo}, erro => ${response.status} - ${response.statusText}`);
+                                toast.error(`Erro ao alterar livro ${titulo}, erro => ${response.status} - ${response.statusText}`);
                             }
                         })
                         .catch(reason => {
-                            toast.error(`Erro ao alterar veículo ${veiculo}, erro => ${reason.error}`);
+                            toast.error(`Erro ao alterar livro ${titulo}, erro => ${reason.error}`);
                         });
                 }
                 window.location.href = '/list';
             }
-            saveCar();
+
+            saveLivros();
         }
     }
 
     if (loading) {
         return (
             <div className="loading">
-                Carregando lista de carros ...
+                Carregando lista de livros ...
             </div>
         )
     }
     return (
         <div className="container">
-            <div className="lista-carros">
-                {(rule === 'list' || rule === undefined) &&
-                    carros.length === 0 &&
+            {exibirNovoLivro}
+            <div className="lista-livros">
+                {(rule === undefined || rule === 'list') && error !== '' &&
                     <div>
-                        <span>Você não possui carros cadastrados...</span><br/>
-                        {exibirNovoCarro ? <Link to="/create">Criar carro</Link> :
-                            <span>Crie os registros de Cores, Marcas e Categoria para incluir um novo carro!</span>}
+                        <span>Você não possui livros cadastrados...</span><br/>
+                        {exibirNovoLivro ? <Link to="/create">Criar Livro</Link> :
+                            <span>Crie os registros de Autores e Assuntos para incluir um novo livro!</span>}
                     </div>
                 }
-                {(rule === 'list' || rule === undefined) && carros.length > 0 &&
+                {rule === 'list' && error === '' && livros.length > 0 &&
                     <div>
-                        <Link to="/create" style={{float: 'right'}}>Criar carro</Link>
+                        <Link to="/create" style={{float: 'right'}}>Criar livro</Link>
                         <table className="table table-striped" width={'100%'}>
                             <thead>
                             <tr>
                                 <td>Id</td>
-                                <td>Veículo</td>
+                                <td>Livro</td>
                                 <td></td>
                             </tr>
                             </thead>
                             <tbody>
-                            {carros.toSorted((a, b) => a.vehicle.localeCompare(b.vehicle)).map(carro =>
-                                <tr key={carro.id}>
-                                    <td width={'5%'}>{carro.id}</td>
-                                    <td width={'94%'}>{carro.vehicle}<br/>{carro.potency}<br/>{carro.brandCategory.brand.name}<br/>{carro.brandCategory.category.name}<br/>
-                                        {carro.color.description}
-                                    </td>
+                            {livros.toSorted((a, b) => a.titulo.localeCompare(b.titulo)).map(livro =>
+                                <tr key={livro.id}>
+                                    <td width={'5%'}>{livro.id}</td>
+                                    <td width={'94%'}>{livro.titulo}<br/>{livro.editora}<br/>{livro.edicao}</td>
                                     <td width={'1%'}>
-                                        <button onClick={() => editCarro(carro)}>Alterar</button>
+                                        <button onClick={() => editLivros(livro)}>Alterar</button>
                                     </td>
                                 </tr>
                             )}
@@ -216,40 +177,27 @@ function Home() {
                 }
                 {(rule !== undefined && rule !== 'list') &&
                     <div className="container">
-                        <h1>Registro de Carros</h1>
+                        <h1>Registro de Livros</h1>
                         <Link onClick={() => window.location.href = '/list'} style={{float: 'right'}}>Voltar</Link><br/>
                         <div className="row row-cols-12">
                             <div className="col-md-4">
-                                <label htmlFor="corOption" className="form-label">Selecione a cor</label><br/>
-                                <select name="corOption" id="cor" className="form-control"
-                                        onChange={(e) => setCor(e.target.value)}>
-                                    {colors.map((cor) => {
+                                <label htmlFor=" assuntoOption" className="form-label">Selecione o assunto</label><br/>
+                                <select name=" assuntoOption" id=" assunto" className="form-control"
+                                        onChange={(e) => setAssunto(e.target.value)}>
+                                    {assuntos.map((assunto) => {
                                         return (
-                                            <option key={cor.id} value={cor.id}>{cor.description}</option>
+                                            <option key={assunto.id} value={assunto.id}>{assunto.descricao}</option>
                                         )
                                     })}
                                 </select>
                             </div>
                             <div className="col-md-4">
-                                <label htmlFor="marcaOption" className="form-label">Selecione a marca</label><br/>
-                                <select name="marcaOption" id="marca" className="form-control"
-                                        onChange={(e) => setMarca(e.target.value)}>
-                                    {brands.map((marca) => {
+                                <label htmlFor=" autorOption" className="form-label">Selecione o autor</label><br/>
+                                <select name=" autorOption" id=" autor" className="form-control"
+                                        onChange={(e) => setAutor(e.target.value)}>
+                                    {autores.map((autor) => {
                                         return (
-                                            <option key={marca.id} value={marca.id}>{marca.name}</option>
-                                        )
-                                    })}
-                                </select>
-                            </div>
-                            <div className="col-md-4">
-                                <label htmlFor="categoriaOption" className="form-label">Selecione a
-                                    categoria</label><br/>
-                                <select name="categoriaOption" id="categoria" className="form-control"
-                                        onChange={(e) => setCategoria(e.target.value)}>
-                                    {categories.map((categoria) => {
-                                        return (
-                                            <option key={categoria.id}
-                                                    value={categoria.id}>{categoria.name}</option>
+                                            <option key={autor.id} value={autor.id}>{autor.nome}</option>
                                         )
                                     })}
                                 </select>
@@ -257,18 +205,23 @@ function Home() {
                         </div>
                         <div className="row row-cols-12">
                             <div className="col-md-8">
-                                <label htmlFor="veiculo" className="form-label">Veículo</label>
-                                <input type="text" className="form-control" id="veiculo" value={veiculo}
-                                       onChange={(e) => setVeiculo(e.target.value)}/>
+                                <label htmlFor="titulo" className="form-label">Título</label>
+                                <input type="text" className="form-control" id="titulo" value={titulo}
+                                       onChange={(e) => setTitulo(e.target.value)}/>
                             </div>
                             <div className="col-md-4">
-                                <label htmlFor="potencia" className="form-label">Potência</label>
-                                <input type="text" className="form-control" id="potencia" value={potencia}
-                                       onChange={(e) => setPotencia(e.target.value)}/>
+                                <label htmlFor="editora" className="form-label">Editora</label>
+                                <input type="text" className="form-control" id="editora" value={editora}
+                                       onChange={(e) => setEditora(e.target.value)}/>
+                            </div>
+                            <div className="col-md-4">
+                                <label htmlFor="edicao" className="form-label">Edição</label>
+                                <input type="text" className="form-control" id="edicao" value={edicao}
+                                       onChange={(e) => setEdicao(e.target.value)}/>
                             </div>
                         </div>
                         <div className="container-fluid" style={{marginTop: "20px"}}>
-                            <button onClick={() => salvarCarro()}>Salvar</button>
+                            <button onClick={() => salvarLivros()}>Salvar</button>
                         </div>
                     </div>
                 }

@@ -49,7 +49,7 @@ public class LivroService {
 
     public ResponseEntity<?> findAll() {
         try {
-            List<Livro> livros = livroRepositoryImpl.findAll();
+            List<Livro> livros = livroRepository.findAll();
             return !livros.isEmpty() ? ResponseEntity.ok(livros.stream().map(INSTANCE::toDto))
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de livros...");
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class LivroService {
 
     public ResponseEntity<?> findById(Long id) {
         try {
-            return ResponseEntity.ok(INSTANCE.toDto(livroRepositoryImpl.findById(id)));
+            return ResponseEntity.ok(INSTANCE.toDto(livroRepository.findById(id).get()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findById %s]".formatted(id), e.getMessage()));
         }
