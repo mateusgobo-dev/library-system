@@ -2,6 +2,7 @@ package br.com.mgobo.web.controller;
 
 import br.com.mgobo.api.service.AutorService;
 import br.com.mgobo.web.dto.AutorDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,12 @@ public class AutorController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody AutorDto autorDto) {
+    public ResponseEntity<?> save(@Valid @RequestBody AutorDto autorDto) {
         return autorService.save(INSTANCE.toEntity(autorDto));
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody AutorDto autorDto) {
+    public ResponseEntity<?> update(@Valid  @RequestBody AutorDto autorDto) {
         return autorService.update(INSTANCE.toEntity(autorDto));
     }
 }

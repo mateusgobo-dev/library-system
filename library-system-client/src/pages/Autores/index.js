@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useLinkClickHandler, useParams} from "react-router-dom";
 import {toast} from "react-toastify";
 import librarysystem_api from "../../services/librarysystem_api"
 import "./autores.css"
@@ -27,9 +27,10 @@ function Autores() {
                             setAutores(response.data);
                             localStorage.setItem("@autores", JSON.stringify(response.data))
                         }
-                    }).catch(error => {
-                    setError(error.response.statusCode === 404 ? "Sem registros de autores" : "Falha no acesso a area de autores");
-                });
+                    }).catch(reason => {
+                        setError(reason.response.data);
+                        toast.error(`Falha na leitura de autores ${reason.response.data}`);
+                    });
                 break;
             case 'edit':
                 const autorEdit = localStorage.getItem("autor");
@@ -45,7 +46,7 @@ function Autores() {
         setLoading(false);
     }, [autores, rule]);
 
-    function salvarAssunto() {
+    function salvarAutores() {
         if (autor === undefined || autor === '') {
             toast.warn('Informe da autor');
             document.getElementById('nome').focus();
@@ -56,32 +57,28 @@ function Autores() {
             }
             if (id === 0) {
                 autorDto.id = null;
-                console.log(autorDto);
 
                 async function create() {
                     await librarysystem_api.post("/api/v1/autores", JSON.stringify(autorDto))
                         .then(response => {
-                            toast.info(`Registro criado ${autorDto.description}!`);
-                            window.location.href = '/autores/list';
+                            toast.info(`Registro criado ${autorDto.nome}!`);
                         })
                         .catch(reason => {
-                            toast.error(`Falha no registro da autor ${reason.data}`);
+                            toast.error(`Falha no registro da autor ${reason.response.data}`);
                         });
                 }
-
                 create();
             } else {
                 async function update() {
                     await librarysystem_api.put("/api/v1/autores", JSON.stringify(autorDto))
                         .then(response => {
-                            toast.info(`Registro alterado ${autorDto.description}!`);
-                            window.location.href = '/autores/list';
+                            toast.info(`Registro alterado ${autorDto.nome}!`);
+                            // window.location.href = '/autores/list';
                         })
                         .catch(reason => {
-                            toast.error(`Falha na alteracao do registro da autor ${reason.data}`);
+                            toast.error(`Falha na alteracao do registro da autor ${reason.response.data}`);
                         });
                 }
-
                 update();
             }
         }
@@ -145,7 +142,7 @@ function Autores() {
                     <input type="text" className="form-control" id="nome" name="nome" value={autor}
                            onChange={e => setAutor(e.target.value)}/>
                     <div className="area-buttons">
-                        <button onClick={() => salvarAssunto()}>Salvar</button>
+                        <button onClick={() => salvarAutores()}>Salvar</button>
                     </div>
                 </div>
             }

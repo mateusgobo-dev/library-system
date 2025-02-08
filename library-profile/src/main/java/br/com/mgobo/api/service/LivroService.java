@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
+import static br.com.mgobo.api.parsers.ParserObject.*;
 import static br.com.mgobo.api.parsers.ParserObject.parserObject;
 import static br.com.mgobo.web.mappers.LivroMapper.*;
 
@@ -51,7 +52,7 @@ public class LivroService {
         try {
             List<Livro> livros = livroRepository.findAll();
             return !livros.isEmpty() ? ResponseEntity.ok(livros.stream().map(INSTANCE::toDto))
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de livros...");
+                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body(toJsonString.apply("Sem registros de livros..."));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findAll]", e.getMessage()));
         }

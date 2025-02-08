@@ -28,9 +28,10 @@ function Assuntos() {
                             setAssuntos(response.data);
                             localStorage.setItem("@assuntos", JSON.stringify(response.data))
                         }
-                    }).catch(error => {
-                    setError(error.response.statusCode === 404 ? "Sem registros de autores" : "Falha no acesso a area de autores");
-                });
+                    }).catch(reason => {
+                        setError(reason.response.data);
+                        toast.error(`Falha na alteracao do registro da autor ${reason.response.data}`);
+                    });
                 break;
             case 'edit':
                 const assuntoEdit = localStorage.getItem("assunto");
@@ -57,31 +58,26 @@ function Assuntos() {
             }
             if (id === 0) {
                 assuntoDto.id = null;
-
                 async function create() {
                     await librarysystem_api.post("/api/v1/assuntos", JSON.stringify(assuntoDto))
                         .then(response => {
-                            toast.info(`Registro criado ${assuntoDto.description}!`);
-                            window.location.href = '/assuntos/list';
+                            toast.info(`Registro criado ${assuntoDto.descricao}!`);
                         })
                         .catch(reason => {
-                            toast.error(`Falha no registro da assunto ${reason.data}`);
+                            toast.error(`Falha no registro da assunto ${reason.response.data}`);
                         });
                 }
-
                 create();
             } else {
                 async function update() {
                     await librarysystem_api.put("/api/v1/assuntos", JSON.stringify(assuntoDto))
                         .then(response => {
-                            toast.info(`Registro alterado ${assuntoDto.description}!`);
-                            window.location.href = '/assuntos/list';
+                            toast.info(`Registro alterado ${assuntoDto.descricao}!`);
                         })
                         .catch(reason => {
-                            toast.error(`Falha na alteracao do registro da assunto ${reason.data}`);
+                            toast.error(`Falha na alteracao do registro da assunto ${reason.response.data}`);
                         });
                 }
-
                 update();
             }
         }

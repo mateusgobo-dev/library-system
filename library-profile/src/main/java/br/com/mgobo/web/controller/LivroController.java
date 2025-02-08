@@ -2,6 +2,7 @@ package br.com.mgobo.web.controller;
 
 import br.com.mgobo.api.service.LivroService;
 import br.com.mgobo.web.dto.LivroDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody LivroDto livro) {
+    public ResponseEntity<?> save(@Valid  @RequestBody LivroDto livro) {
         return livroService.save(INSTANCE.toEntity(livro));
     }
 

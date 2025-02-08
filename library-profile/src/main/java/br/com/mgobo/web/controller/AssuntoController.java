@@ -2,6 +2,7 @@ package br.com.mgobo.web.controller;
 
 import br.com.mgobo.api.service.AssuntoService;
 import br.com.mgobo.web.dto.AssuntoDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,12 @@ public class AssuntoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody AssuntoDto assuntoDto) {
+    public ResponseEntity<?> save(@Valid @RequestBody AssuntoDto assuntoDto) {
         return assuntoService.save(INSTANCE.toEntity(assuntoDto));
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody AssuntoDto assuntoDto) {
+    public ResponseEntity<?> update(@Valid @RequestBody AssuntoDto assuntoDto) {
         return assuntoService.update(INSTANCE.toEntity(assuntoDto));
     }
 }
