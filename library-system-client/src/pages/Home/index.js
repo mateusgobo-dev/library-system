@@ -67,17 +67,27 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        librarysystem_api.get("/api/v1/livros")
-            .then(response => {
-                if (JSON.stringify(livros) !== JSON.stringify(response.data)) {
-                    setLivros(response.data);
-                    localStorage.setItem("@livros", response.data);
+
+        const recuperarLivros = async () => {
+            try {
+                const response = await librarysystem_api.get("/api/v1/livros");
+                console.log(rule);
+                if (response.status === 200) {
+                    if (JSON.stringify(livros) !== JSON.stringify(response.data)) {
+                        setLivros(response.data);
+                        localStorage.setItem("@livros", response.data);
+                    }
+                } else if (response.status === 400) {
+                    response.data.map((d) => toast.error(d.message));
                 }
-            }).catch(reason => {
-            toast.error(`${reason.response.data}`);
-            setExibirNovoLivro(true);
-            setError(reason.response.data);
-        });
+            } catch (error) {
+                console.error('Error reading livros:', error);
+                toast.error('Erro ao carregar livros');
+                setExibirNovoLivro(true);
+                setError(error.response.data);
+            }
+        };
+        recuperarLivros();
         setLoading(false);
     }, []);
 
@@ -164,7 +174,7 @@ function Home() {
                 {exibirNovoLivro ? <Link to="/create">Criar Livro</Link> :
                     <span>Crie os registros de Autores e Assuntos para incluir um novo livro!</span>}
             </div>}
-            {rule === 'list' && error === '' && livros.length > 0 && <div>
+            {(rule === undefined || rule === 'list')&& error === '' && livros.length > 0 && <div>
                 <Link to="/create" style={{float: 'right'}}>Criar livro</Link>
                 <table className="table table-striped" width={'100%'}>
                     <thead>

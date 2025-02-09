@@ -28,12 +28,12 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@Valid  @RequestBody LivroDto livro) {
-        return livroService.save(INSTANCE.toEntity(livro));
+    public ResponseEntity<?> save(@Valid  @RequestBody LivroDto livroDto) {
+        return livroService.save(livroDto);
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody LivroDto livro) {
-        return livroService.update(INSTANCE.toEntity(livro));
+    public ResponseEntity<?> update(@RequestBody LivroDto livroDto) {
+        return livroService.update(livroDto);
     }
 }

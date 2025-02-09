@@ -2,14 +2,17 @@ package br.com.mgobo.web.controller;
 
 import br.com.mgobo.api.entities.Assunto;
 import br.com.mgobo.api.entities.Autor;
+import br.com.mgobo.api.entities.Livro;
 import br.com.mgobo.api.repository.AssuntoRepository;
 import br.com.mgobo.api.repository.AutorRepository;
+import br.com.mgobo.api.repository.LivroRepository;
 import br.com.mgobo.web.BaseIntegratedTest;
 import br.com.mgobo.web.dto.AssuntoDto;
 import br.com.mgobo.web.dto.AutorDto;
 import br.com.mgobo.web.dto.LivroDto;
 import br.com.mgobo.web.mappers.AssuntoMapper;
 import br.com.mgobo.web.mappers.AutorMapper;
+import br.com.mgobo.web.mappers.LivroMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static br.com.mgobo.api.parsers.ParserObject.parserObject;
+import static br.com.mgobo.web.mappers.LivroMapper.INSTANCE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -40,6 +44,9 @@ public class LivroControllerTest extends BaseIntegratedTest {
 
     @Autowired
     private AutorRepository autorRepository;
+
+    @Autowired
+    private LivroRepository livroRepository;
 
     @BeforeAll
     public static void setUpBeforeClass() throws Exception {
@@ -68,7 +75,7 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testCreate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", 1, "2024", assuntoDto.id(), autorDto.id());
+        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", "1", "2024", assuntoDto.id(), "", autorDto.id(), "");
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(parserObject.toJson(livroDto)));
@@ -85,10 +92,14 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testUpdate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(1L, "A ARTE DA PAZ", "BRASIL", 2, "2023", assuntoDto.id(), autorDto.id());
+        LivroDto livroDto = new LivroDto(null, "A ARTE DA PAZ", "BRASIL", "2", "2023", assuntoDto.id(), "", autorDto.id(), "");
+
+        Livro livro = this.livroRepository.save(INSTANCE.toEntity(livroDto));
+        LivroDto livroDtoUpdate = new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(), assuntoDto.id(), "", autorDto.id(), "");
+
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put(url)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(parserObject.toJson(livroDto)));
+                .content(parserObject.toJson(livroDtoUpdate)));
         int status = resultActions.andReturn().getResponse().getStatus();
         try {
             assertEquals(202, status, "Sucesso na requisição");
