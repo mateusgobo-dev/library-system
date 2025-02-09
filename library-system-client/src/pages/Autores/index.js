@@ -1,9 +1,8 @@
 import {React, useEffect, useState} from "react";
-import {Link, useLinkClickHandler, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {toast} from "react-toastify";
 import librarysystem_api from "../../services/librarysystem_api"
 import "./autores.css"
-
 
 function Autores() {
     const {rule} = useParams();
@@ -12,25 +11,30 @@ function Autores() {
     const [autor, setAutor] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    // const profile = localStorage.getItem("@profile")
-    // if(profile === null){
-    //     toast.warn("Realize seu cadastro ou efetue o login para acessar as áreas do sistema...");
-    //     setTimeout(redirectToUser, 3000);
-    // }
 
     useEffect(() => {
         switch (rule) {
             case 'list':
-                librarysystem_api.get("/api/v1/autores")
-                    .then(response => {
-                        if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
-                            setAutores(response.data);
-                            localStorage.setItem("@autores", JSON.stringify(response.data))
+                const recuperarAtores = async () => {
+                    try {
+                        const response = await librarysystem_api.get("/api/v1/autores");
+                        console.log(rule);
+                        if (response.status === 200) {
+                            if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
+                                setAutores(response.data);
+                                localStorage.setItem("@autores", response.data);
+                            }
+                        } else if (response.status === 400) {
+                            response.data.map((d) => toast.error(d.message));
                         }
-                    }).catch(reason => {
-                        setError(reason.response.data);
-                        toast.error(`Falha na leitura de autores ${reason.response.data}`);
-                    });
+                    } catch (error) {
+                        console.error('Error reading autores:', error);
+                        toast.error('Erro ao carregar autores');
+                        setError(error.response.data);
+                    }
+                };
+                recuperarAtores();
+                setLoading(false);
                 break;
             case 'edit':
                 const autorEdit = localStorage.getItem("autor");
@@ -41,46 +45,48 @@ function Autores() {
                 }
                 setLoading(false);
                 break;
-            default : break;
+            default :
+                break;
         }
         setLoading(false);
     }, [autores, rule]);
 
     function salvarAutores() {
-        if (autor === undefined || autor === '') {
-            toast.warn('Informe da autor');
-            document.getElementById('nome').focus();
+        let autorDto = {
+            id: id === 0 ? null : id,
+            nome: autor
+        }
+        if (rule === 'create') {
+            const saveAtores = async () => {
+                try {
+                    const response = await librarysystem_api.post("/api/v1/autores", JSON.stringify(autorDto));
+                    if (response.status === 201) {
+                        toast.info(response.data);
+                    } else if (response.status === 400) {
+                        response.data.map((d) => toast.error(d.message));
+                    }
+                } catch (error) {
+                    console.error('Error creating atores:', error);
+                    toast.error('Erro ao criar atores');
+                }
+            }
+            saveAtores();
         } else {
-            let autorDto = {
-                id: id,
-                nome: autor
-            }
-            if (id === 0) {
-                autorDto.id = null;
-
-                async function create() {
-                    await librarysystem_api.post("/api/v1/autores", JSON.stringify(autorDto))
-                        .then(response => {
-                            toast.info(`Registro criado ${autorDto.nome}!`);
-                        })
-                        .catch(reason => {
-                            toast.error(`Falha no registro da autor ${reason.response.data}`);
-                        });
+            const atualizarAtores = async () => {
+                try {
+                    const response = await librarysystem_api.put("/api/v1/autores", JSON.stringify(autorDto));
+                    console.log(rule)
+                    if (response.status === 202) {
+                        toast.info(response.data);
+                    } else if (response.status === 400) {
+                        response.data.map((d) => toast.error(d.message));
+                    }
+                } catch (error) {
+                    console.error('Error updating atores:', error);
+                    toast.error('Erro ao atualizar atores');
                 }
-                create();
-            } else {
-                async function update() {
-                    await librarysystem_api.put("/api/v1/autores", JSON.stringify(autorDto))
-                        .then(response => {
-                            toast.info(`Registro alterado ${autorDto.nome}!`);
-                            // window.location.href = '/autores/list';
-                        })
-                        .catch(reason => {
-                            toast.error(`Falha na alteracao do registro da autor ${reason.response.data}`);
-                        });
-                }
-                update();
             }
+            atualizarAtores();
         }
     }
 
@@ -88,10 +94,6 @@ function Autores() {
         localStorage.setItem("autor", JSON.stringify(autor));
         window.location.href = "/autores/edit";
     }
-
-    // function redirectToUser(){
-    //     window.location.href = '/usuario';
-    // }
 
     if (loading) {
         return (

@@ -111,8 +111,6 @@ function Home() {
     }
 
     function salvarLivros() {
-        // let validarFormulario = validarPreenchimentoFormulario(titulo, editora, edicao, anoPublicacao);
-        // if (validarFormulario) {
         const livroDto = {
             id: rule === 'edit' ? setId(id) : null,
             titulo: titulo,
@@ -123,11 +121,7 @@ function Home() {
             autorId: autor
         };
 
-        // Handle Create Book
         if (rule === 'create') {
-            console.log(rule);
-
-            // Use async/await and handle response properly
             const createLivros = async () => {
                 try {
                     const response = await librarysystem_api.post("/api/v1/livros", livroDto);

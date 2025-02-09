@@ -13,73 +13,83 @@ function Assuntos() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // const profile = localStorage.getItem("@profile")
-    // if(profile === null){
-    //     toast.warn("Realize seu cadastro ou efetue o login para acessar as áreas do sistema...");
-    //     setTimeout(redirectToUser, 3000);
-    // }
-
     useEffect(() => {
         switch (rule) {
             case 'list':
-                librarysystem_api.get("/api/v1/assuntos")
-                    .then(response => {
-                        if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
-                            setAssuntos(response.data);
-                            localStorage.setItem("@assuntos", JSON.stringify(response.data))
+                const recuperarAssuntos = async () => {
+                    try {
+                        const response = await librarysystem_api.get("/api/v1/assuntos");
+                        console.log(rule);
+                        if (response.status === 200) {
+                            if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
+                                setAssuntos(response.data);
+                                localStorage.setItem("@assuntos", response.data);
+                            }
+                        } else if (response.status === 400) {
+                            response.data.map((d) => toast.error(d.message));
                         }
-                    }).catch(reason => {
-                        setError(reason.response.data);
-                        toast.error(`Falha na alteracao do registro da autor ${reason.response.data}`);
-                    });
+                    } catch (error) {
+                        console.error('Error reading assuntos:', error);
+                        toast.error('Erro ao carregar assuntos');
+                        setError(error.response.data);
+                    }
+                };
+                recuperarAssuntos();
+                setLoading(false);
                 break;
             case 'edit':
                 const assuntoEdit = localStorage.getItem("assunto");
                 if (assuntoEdit !== undefined && assuntoEdit !== '') {
                     let assuntoEditAsObject = JSON.parse(assuntoEdit);
                     setId(assuntoEditAsObject.id);
-                    setAssunto(assuntoEditAsObject.description)
+                    setAssunto(assuntoEditAsObject.descricao)
                 }
                 setLoading(false);
                 break;
-            default : break;
+            default :
+                break;
         }
         setLoading(false);
     }, [rule, assuntos]);
 
     function salvarAssunto() {
-        if (assunto === undefined || assunto === '') {
-            toast.warn('Informe da assunto');
-            document.getElementById('descricao').focus();
+        let assuntoDto = {
+            id: id === 0 ? null : id,
+            descricao: assunto
+        }
+        if (rule === 'create') {
+            const createAssuntos = async () => {
+                try {
+                    const response = await librarysystem_api.post("/api/v1/assuntos", assuntoDto);
+                    console.log('Response Status:', response.status);
+                    if (response.status === 201) {
+                        toast.info(response.data);
+
+                    } else if (response.status === 400) {
+                        response.data.map((d) => toast.error(d.message));
+                    }
+                } catch (error) {
+                    console.error('Error creating assunto:', error);
+                    toast.error('Erro ao criar assunto');
+                }
+            };
+            createAssuntos();
         } else {
-            let assuntoDto = {
-                id: id,
-                descricao: assunto
-            }
-            if (id === 0) {
-                assuntoDto.id = null;
-                async function create() {
-                    await librarysystem_api.post("/api/v1/assuntos", JSON.stringify(assuntoDto))
-                        .then(response => {
-                            toast.info(`Registro criado ${assuntoDto.descricao}!`);
-                        })
-                        .catch(reason => {
-                            toast.error(`Falha no registro da assunto ${reason.response.data}`);
-                        });
+            const updateAssuntos = async () => {
+                try {
+                    const response = await librarysystem_api.put("/api/v1/assuntos", assuntoDto);
+                    console.log('Response Status:', response.status);
+                    if (response.status === 202) {
+                        toast.info(response.data);
+                    } else if (response.status === 400) {
+                        response.data.map((d) => toast.error(d.message));
+                    }
+                } catch (error) {
+                    console.error('Error atualizar assunto:', error);
+                    toast.error('Erro ao atualizar assunto');
                 }
-                create();
-            } else {
-                async function update() {
-                    await librarysystem_api.put("/api/v1/assuntos", JSON.stringify(assuntoDto))
-                        .then(response => {
-                            toast.info(`Registro alterado ${assuntoDto.descricao}!`);
-                        })
-                        .catch(reason => {
-                            toast.error(`Falha na alteracao do registro da assunto ${reason.response.data}`);
-                        });
-                }
-                update();
-            }
+            };
+            updateAssuntos();
         }
     }
 
@@ -87,10 +97,6 @@ function Assuntos() {
         localStorage.setItem("assunto", JSON.stringify(assunto));
         window.location.href = "/assuntos/edit";
     }
-
-    // function redirectToUser(){
-    //     window.location.href = '/usuario';
-    // }
 
     if (loading) {
         return (
