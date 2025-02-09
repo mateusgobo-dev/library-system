@@ -2,14 +2,20 @@ package br.com.mgobo.web.advices;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static br.com.mgobo.api.parsers.ParserObject.parserObject;
+import static br.com.mgobo.api.parsers.ParserObject.toJsonString;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -23,8 +29,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> methodArgumentNotValid(MethodArgumentNotValidException e) {
-        Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getFieldErrors().forEach(error -> {errors.put(error.getField(), error.getDefaultMessage());});
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        List<HandlerError> errors = new ArrayList<>();
+        e.getBindingResult().getFieldErrors().forEach(error -> {
+            errors.add(HandlerError.instanceOf(error.getField(), error.getDefaultMessage()));
+        });
+        return new ResponseEntity<>(parserObject.toJson(errors), HttpStatus.BAD_REQUEST);
     }
 }

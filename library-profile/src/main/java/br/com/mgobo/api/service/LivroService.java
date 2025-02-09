@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
 import static br.com.mgobo.api.parsers.ParserObject.*;
@@ -32,7 +33,9 @@ public class LivroService {
             livro.setCreatedAt(LocalDateTime.now());
             livro.setUpdatedAt(LocalDateTime.now());
             livro = livroRepository.save(livro);
-            return ResponseEntity.created(new URI("/find/%s".formatted(livro.getId()))).body(CREATED.getMessage().formatted(livro.getTitulo()));
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .header("baseUrl", "/find/"+livro.getId().toString()).body(
+                            Map.of("response",toJsonString.apply(CREATED.getMessage().formatted(livro.getTitulo()))));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[save]", e.getMessage()));
         }
@@ -42,7 +45,7 @@ public class LivroService {
         try {
             livro.setUpdatedAt(LocalDateTime.now());
             livro = livroRepository.save(livro);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(ACCEPTED.getMessage().formatted(livro.getTitulo()));
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("response",toJsonString.apply(ACCEPTED.getMessage().formatted(livro.getTitulo()))));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[update]", e.getMessage()));
         }

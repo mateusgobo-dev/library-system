@@ -4,7 +4,7 @@ import {Link, useParams} from "react-router-dom";
 import "./home.css"
 import {toast} from "react-toastify";
 
-function validarPreenchimentoFormulario(titulo, editora) {
+function validarPreenchimentoFormulario(titulo, editora, edicao, anoPublicacao) {
     let isValid = true;
     if (titulo === undefined || titulo === '') {
         toast.warn("Informe o título");
@@ -13,6 +13,14 @@ function validarPreenchimentoFormulario(titulo, editora) {
     } else if (editora === undefined || editora === '') {
         toast.warn("Informe a editora");
         document.getElementById('editora').focus();
+        isValid = false;
+    } else if (edicao === undefined || edicao === '') {
+        toast.warn("Informe a edicao");
+        document.getElementById('edicao').focus();
+        isValid = false;
+    } else if (anoPublicacao === undefined || anoPublicacao === '') {
+        toast.warn("Informe o ano de publicação");
+        document.getElementById('anoPublicacao').focus();
         isValid = false;
     }
     return isValid;
@@ -28,8 +36,9 @@ function Home() {
     const [editora, setEditora] = useState("");
     const [titulo, setTitulo] = useState("");
     const [assunto, setAssunto] = useState(0);
-    const [edicao, setEdicao] = useState(0);
+    const [edicao, setEdicao] = useState("");
     const [autor, setAutor] = useState(0);
+    const [anoPublicacao, setAnoPublicacao] = useState("");
     const [exibirNovoLivro, setExibirNovoLivro] = useState(true);
     const [error, setError] = useState("");
 
@@ -65,37 +74,26 @@ function Home() {
                     localStorage.setItem("@livros", response.data);
                 }
             }).catch(reason => {
-                toast.error(`${reason.response.data}`);
-                setExibirNovoLivro(true);
-                setError(reason.response.data);
-            });
+            toast.error(`${reason.response.data}`);
+            setExibirNovoLivro(true);
+            setError(reason.response.data);
+        });
         setLoading(false);
     }, []);
 
-    /**
-     * const go = (assuntos != null && autores != null) && (assuntos.length > 0 && autores.length > 0)
-     *                     if (go) {
-     *                         console.log(`Dados: ${JSON.stringify(assuntos)} - ${JSON.stringify(autores)}`);
-     *                         if (assuntos !== null && assuntos.length > 0) {
-     *                             setAssunto(parseInt(JSON.stringify(assuntos[0].id)));
-     *                         }
-     *                         if (autores !== null && autores.length > 0) {
-     *                             setAutor(parseInt(JSON.stringify(autores[0].id)));
-     *                         }
-     *                         setExibirNovoLivro((assuntos !== null && assuntos.length > 0) && (autores !== null && autores.length > 0));
-     *                         if (rule === 'edit') {
-     *                             const livroEdit = localStorage.getItem("@livro");
-     *                             if (livroEdit !== undefined && livroEdit !== '') {
-     *                                 let livroEditAsObject = JSON.parse(livroEdit);
-     *                                 setId(livroEditAsObject.id);
-     *                                 setEditora(livroEditAsObject.potency);
-     *                                 setTitulo(livroEditAsObject.vehicle);
-     *                             }
-     *                         }
-     *                     }
-     *
-     * @param livro
-     */
+    useEffect(() => {
+        if (rule === 'edit') {
+            const livroEdit = localStorage.getItem("@livro");
+            if (livroEdit !== undefined && livroEdit !== '') {
+                let livroEditAsObject = JSON.parse(livroEdit);
+                setId(livroEditAsObject.id);
+                setEditora(livroEditAsObject.editora);
+                setTitulo(livroEditAsObject.titulo);
+                setEdicao(livroEditAsObject.edicao)
+                setAnoPublicacao(livroEditAsObject.anoPublicacao);
+            }
+        }
+    }, [rule]);
 
     function editLivros(livro) {
         localStorage.setItem("@livro", JSON.stringify(livro));
@@ -103,40 +101,54 @@ function Home() {
     }
 
     function salvarLivros() {
-        let validarFormulario = validarPreenchimentoFormulario(titulo, editora);
-        if (validarFormulario) {
-            const livroDto = {
-                id: rule === 'edit' ? setId(id) : null, titulo: setTitulo(titulo), editora: setEditora(editora), assuntoId: setAssunto(assunto), autorId: setAutor(autor)
-            }
-            async function saveLivros() {
-                if (rule === 'create') {
-                    await librarysystem_api.post("/api/v1/livros", JSON.stringify(livroDto))
-                        .then(response => {
-                            if (response.status === 201) {
-                                toast.info(`Livro ${titulo} criado com sucesso`);
-                            } else {
-                                toast.error(`Erro ao salvar livro ${titulo}, erro => ${response.data}`);
-                            }
-                        })
-                        .catch(reason => {
-                            toast.error(`Erro ao salvar livro ${titulo}, erro => ${reason.response.data}`);
-                        });
-                } else {
-                    await librarysystem_api.put("/api/v1/livros", JSON.stringify(livroDto))
-                        .then(response => {
-                            if (response.status === 202) {
-                                toast.info(`Livro ${titulo} alterado com sucesso`);
-                                window.location.href = '/list';
-                            } else {
-                                toast.error(`Erro ao salvar livro ${titulo}, erro => ${response.data}`);
-                            }
-                        })
-                        .catch(reason => {
-                            toast.error(`Erro ao salvar livro ${titulo}, erro => ${reason.response.data}`);
-                        });
+        // let validarFormulario = validarPreenchimentoFormulario(titulo, editora, edicao, anoPublicacao);
+        // if (validarFormulario) {
+        const livroDto = {
+            id: rule === 'edit' ? setId(id) : null,
+            titulo: titulo,
+            editora: editora,
+            edicao: edicao,
+            anoPublicacao: anoPublicacao,
+            assuntoId: assunto,
+            autorId: autor
+        };
+
+        // Handle Create Book
+        if (rule === 'create') {
+            console.log(rule);
+
+            // Use async/await and handle response properly
+            const createLivros = async () => {
+                try {
+                    const response = await librarysystem_api.post("/api/v1/livros", livroDto);
+                    console.log('Response Status:', response.status);
+                    if (response.status === 201) {
+                        toast.info(response.data.response);
+
+                    } else if (response.status === 400) {
+                        response.data.map((d) => toast.error(d.message));
+                    }
+                } catch (error) {
+                    console.error('Error creating livro:', error);
+                    toast.error('Erro ao criar livro');
                 }
-            }
-            saveLivros();
+            };
+            createLivros();
+        } else {
+            const updateBooks = async () => {
+                try {
+                    const response = await librarysystem_api.put("/api/v1/livros", livroDto);
+                    if (response.status === 202) {
+                        toast.info(response.data.response);
+                    } else {
+                        toast.error(`Erro ao salvar livro ${titulo}, erro => ${response.data}`);
+                    }
+                } catch (error) {
+                    console.error('Error updating livro:', error);
+                    toast.error(`Erro ao salvar livro ${titulo}, erro => ${error.response?.data}`);
+                }
+            };
+            updateBooks();
         }
     }
 
@@ -150,7 +162,7 @@ function Home() {
             {(rule === undefined || rule === 'list') && error !== '' && <div>
                 <span>Você não possui livros cadastrados...</span><br/>
                 {exibirNovoLivro ? <Link to="/create">Criar Livro</Link> :
-                        <span>Crie os registros de Autores e Assuntos para incluir um novo livro!</span>}
+                    <span>Crie os registros de Autores e Assuntos para incluir um novo livro!</span>}
             </div>}
             {rule === 'list' && error === '' && livros.length > 0 && <div>
                 <Link to="/create" style={{float: 'right'}}>Criar livro</Link>
@@ -165,7 +177,7 @@ function Home() {
                     <tbody>
                     {livros.toSorted((a, b) => a.titulo.localeCompare(b.titulo)).map(livro => <tr key={livro.id}>
                         <td width={'5%'}>{livro.id}</td>
-                        <td width={'94%'}>{livro.titulo}<br/>{livro.editora}<br/>{livro.edicao}</td>
+                        <td width={'94%'}>Título: {livro.titulo}<br/>Livro: {livro.editora}<br/>Edição: {livro.edicao}</td>
                         <td width={'1%'}>
                             <button onClick={() => editLivros(livro)}>Alterar</button>
                         </td>
@@ -197,11 +209,13 @@ function Home() {
                     </div>
                 </div>
                 <div className="row row-cols-12">
-                    <div className="col-md-8">
+                    <div className="col-md-12">
                         <label htmlFor="titulo" className="form-label">Título</label>
                         <input type="text" className="form-control" id="titulo" value={titulo}
                                onChange={(e) => setTitulo(e.target.value)}/>
                     </div>
+                </div>
+                <div className="row row-cols-12">
                     <div className="col-md-4">
                         <label htmlFor="editora" className="form-label">Editora</label>
                         <input type="text" className="form-control" id="editora" value={editora}
@@ -211,6 +225,11 @@ function Home() {
                         <label htmlFor="edicao" className="form-label">Edição</label>
                         <input type="text" className="form-control" id="edicao" value={edicao}
                                onChange={(e) => setEdicao(e.target.value)}/>
+                    </div>
+                    <div className="col-md-4">
+                        <label htmlFor="anoPublicacao" className="form-label">Ano Publicação</label>
+                        <input type="text" className="form-control" id="anoPublicacao" value={anoPublicacao}
+                               onChange={(e) => setAnoPublicacao(e.target.value)}/>
                     </div>
                 </div>
                 <div className="container-fluid" style={{marginTop: "20px"}}>

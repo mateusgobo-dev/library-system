@@ -13,9 +13,8 @@ public record LivroDto(Long id,
                        String titulo,
                        @NotBlank(message = "Informe a editora")
                        String editora,
-                       @NotNull(message = "Informe a edição")
-                       @NegativeOrZero(message = "A edição não pode ter um valor negativo ou igual a 0")
-                       Integer edicao,
+                       @NotBlank(message = "Informe a edição")
+                       String edicao,
                        @NotBlank(message = "Informe o ano de publicação")
                        String anoPublicacao,
                        Long assuntoId,
