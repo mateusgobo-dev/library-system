@@ -129,7 +129,7 @@ function Assuntos() {
                         {assuntos.toSorted((a, b) => a.descricao.localeCompare(b.descricao)).map(assunto =>
                             <tr key={assunto.id}>
                                 <td width={'5%'}>{assunto.id}</td>
-                                <td width={'94%'}>{assunto.descricao}</td>
+                                <td width={'94%'} align={'left'}>{assunto.descricao}</td>
                                 <td width={'1%'}>
                                     <button onClick={() => editAssunto(assunto)}>Alterar</button>
                                 </td>

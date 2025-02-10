@@ -125,7 +125,7 @@ function Autores() {
                         {autores.toSorted((a, b) => a.nome.localeCompare(b.nome)).map(autor =>
                             <tr key={autor.id}>
                                 <td width={'5%'}>{autor.id}</td>
-                                <td width={'94%'}>{autor.nome}</td>
+                                <td width={'94%'} align={'left'}>{autor.nome}</td>
                                 <td width={'1%'}>
                                     <button onClick={() => editAssunto(autor)}>Alterar</button>
                                 </td>

@@ -1,0 +1,141 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="library-books" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="library_app"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50.0" bold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18.0" bold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14.0" bold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle mode="Opaque" backcolor="#F0EFEF">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<query language="SQL"><![CDATA[select * from vw_relatorio_livros]]></query>
+	<field name="titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.label" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<field name="ano_publicacao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ano_publicacao"/>
+		<property name="com.jaspersoft.studio.field.label" value="ano_publ@Fielddicacao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<field name="edicao" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="edicao"/>
+		<property name="com.jaspersoft.studio.field.label" value="edicao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<field name="editora" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="editora"/>
+		<property name="com.jaspersoft.studio.field.label" value="editora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="vw_relatorio_livros"/>
+	</field>
+	<group name="Group1">
+		<expression><![CDATA[$F{nome}]]></expression>
+		<groupHeader>
+			<band height="37">
+				<element kind="frame" uuid="0a5fc4ac-2e39-4b7a-8f96-59f8eb2df66d" mode="Opaque" x="0" y="7" width="549" height="24" forecolor="#B89F7D" backcolor="#000000">
+					<element kind="textField" uuid="4fbebfd3-a184-45af-b7d9-5c3faaf087b5" x="2" y="0" width="547" height="24" forecolor="#FFFFFF" fontName="Choco cooky" fontSize="12.0" textAdjust="StretchHeight" printRepeatedValues="false" bold="false" style="SubTitle">
+						<expression><![CDATA[$F{nome}]]></expression>
+					</element>
+				</element>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="132" splitType="Stretch">
+		<element kind="frame" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a" mode="Opaque" x="0" y="0" width="552" height="95" backcolor="#000000">
+			<element kind="staticText" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21" x="0" y="0" width="544" height="94" forecolor="#FAFAFA" fontName="Choco cooky" fontSize="25.0" bold="false">
+				<text><![CDATA[Relação de Livros por autor]]></text>
+			</element>
+		</element>
+		<element kind="frame" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4" mode="Opaque" x="0" y="100" width="550" height="32" forecolor="#000000" backcolor="#CC0000">
+			<element kind="textField" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8" x="307" y="12" width="242" height="20" forecolor="#FFFFFF" fontName="Choco cooky" fontSize="12.0" pattern="EEEEE dd MMMMM yyyy" hTextAlign="Right">
+				<expression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="staticText" uuid="fc5d7884-863d-4b24-b526-2a93013f33de" x="2" y="7" width="182" height="18" forecolor="#000000" fontName="Choco cooky" bold="false" style="Column header">
+			<text><![CDATA[Título]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="981778b4-ebe3-49ce-89ed-d22b61c80b1a"/>
+		</element>
+		<element kind="staticText" uuid="e3b41b09-fb4a-4a3f-b527-9d8eb1466fe2" x="184" y="7" width="92" height="18" forecolor="#000000" fontName="Choco cooky" bold="false" style="Column header">
+			<text><![CDATA[Ano]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ed5542b-4737-47e4-af41-6b102441b352"/>
+		</element>
+		<element kind="staticText" uuid="cde87129-5130-45f3-a159-18eb44d1e748" x="276" y="7" width="92" height="18" forecolor="#000000" fontName="Choco cooky" bold="false" style="Column header">
+			<text><![CDATA[Edição]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4780f3a3-ef66-4dbf-9191-dfa1e0535053"/>
+		</element>
+		<element kind="staticText" uuid="269f36a4-d601-472d-a810-24434275e145" x="368" y="7" width="92" height="18" forecolor="#000000" fontName="Choco cooky" bold="false" style="Column header">
+			<text><![CDATA[Editora]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8d77ec1b-59c4-4410-8715-5394c9f34c62"/>
+		</element>
+		<element kind="staticText" uuid="3ab06dc6-33a6-4e4f-964f-3871cf6f289d" x="460" y="7" width="92" height="18" forecolor="#000000" fontName="Choco cooky" bold="false" style="Column header">
+			<text><![CDATA[Descrição]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cfd92693-e851-4b6b-b953-0c3623241bb5"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<element kind="frame" uuid="b50221b5-8254-440b-8c6f-1f0b138c9259" mode="Opaque" x="0" y="0" width="555" height="18" style="Row">
+				<element kind="textField" uuid="cef561be-5359-4a80-bdf9-52ccbcd4c0fe" positionType="Float" x="0" y="0" width="180" height="18" fontName="Choco cooky" fontSize="10.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{titulo}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="981778b4-ebe3-49ce-89ed-d22b61c80b1a"/>
+				</element>
+				<element kind="textField" uuid="88a981a1-1e0e-49fc-8410-a05a608b4af5" positionType="Float" x="184" y="0" width="92" height="18" fontSize="10.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{ano_publicacao}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ed5542b-4737-47e4-af41-6b102441b352"/>
+				</element>
+				<element kind="textField" uuid="776d4d74-a9ea-46ea-8b31-760cd52597c2" positionType="Float" x="276" y="0" width="92" height="18" fontName="Choco cooky" fontSize="10.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{edicao}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4780f3a3-ef66-4dbf-9191-dfa1e0535053"/>
+				</element>
+				<element kind="textField" uuid="06731e57-cf51-4301-9d06-87bbe6e348a2" positionType="Float" x="368" y="0" width="92" height="18" fontName="Choco cooky" fontSize="10.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{editora}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8d77ec1b-59c4-4410-8715-5394c9f34c62"/>
+				</element>
+				<element kind="textField" uuid="8c34863f-583b-43d8-8aec-c816bd07f888" positionType="Float" x="460" y="0" width="92" height="18" fontName="Choco cooky" fontSize="10.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{descricao}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cfd92693-e851-4b6b-b953-0c3623241bb5"/>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="7" splitType="Stretch">
+		<element kind="line" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1">
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</element>
+	</columnFooter>
+	<pageFooter height="25" splitType="Stretch">
+		<element kind="frame" uuid="729c3539-f946-4d0e-a0a7-bda2815ea1b0" mode="Opaque" x="0" y="1" width="549" height="24" forecolor="#D0B48E" backcolor="#000000">
+			<element kind="textField" uuid="4834e99c-7f6c-485a-b098-50e5187f2ab4" x="513" y="0" width="36" height="20" forecolor="#FFFFFF" fontName="Choco cooky" fontSize="10.0" evaluationTime="Report" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+			</element>
+			<element kind="textField" uuid="9825b46e-76f1-469a-abb8-a1cc27aad685" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" fontName="Choco cooky" fontSize="10.0" bold="false" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+			</element>
+			<element kind="textField" uuid="137d38c7-1a83-4fc5-b156-9d5f1b1a0ddc" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" fontName="Choco cooky" fontSize="10.0" pattern="EEEEE dd MMMMM yyyy" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></expression>
+			</element>
+		</element>
+	</pageFooter>
+	<summary splitType="Stretch"/>
+</jasperReport>

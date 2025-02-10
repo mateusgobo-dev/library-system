@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/library-profile/script_relatorio.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/ReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/ReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/reports/library-books.jasper" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/reports/library-books.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-system-client/react-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAssunto.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/entities/LivroAssunto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/CarProfileConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/CarProfileConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/advices/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/advices/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/LivroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/LivroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" afterDir="false" />
@@ -62,7 +69,7 @@
     "Spring Boot.LibraryProfileApplication.executor": "Debug",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system",
+    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system/library-profile/src/main/resources/reports",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,7 +79,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "/home/mateusgobo/ideaIU-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/home/mateus.gobo/intellij/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,6 +88,7 @@
       <recent name="br.com.mgobo.web.advices" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/library-profile/src/main/resources/reports" />
       <recent name="$PROJECT_DIR$/library-system-client/src/pages" />
       <recent name="$PROJECT_DIR$/library-system-client/src" />
       <recent name="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo" />
@@ -239,16 +247,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java</url>
           <line>75</line>
           <option name="timeStamp" value="4" />
@@ -259,63 +257,13 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/AssuntoController.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
           <line>88</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/advices/GlobalExceptionHandler.java</url>
-          <line>25</line>
+          <line>21</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -339,19 +287,9 @@
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/LivroController.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="61" />
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/controller/ReportController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
