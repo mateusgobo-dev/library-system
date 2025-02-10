@@ -19,19 +19,20 @@ function Assuntos() {
                 const recuperarAssuntos = async () => {
                     try {
                         const response = await librarysystem_api.get("/api/v1/assuntos");
-                        console.log(rule);
+                        console.log(response);
                         if (response.status === 200) {
                             if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
                                 setAssuntos(response.data);
                                 localStorage.setItem("@assuntos", response.data);
                             }
-                        } else if (response.status === 400) {
+                        } else if (response.status === 400 || response.status === 404) {
                             response.data.map((d) => toast.error(d.message));
+                            setError("falha na leitura dos assuntos");
                         }
                     } catch (error) {
                         console.error('Error reading assuntos:', error);
                         toast.error('Erro ao carregar assuntos');
-                        setError(error.response.data);
+                        setError("falha na leitura dos assuntos");
                     }
                 };
                 recuperarAssuntos();
@@ -81,7 +82,7 @@ function Assuntos() {
                     console.log('Response Status:', response.status);
                     if (response.status === 202) {
                         toast.info(response.data);
-                    } else if (response.status === 400) {
+                    } else if (response.status === 400 || response.status == 404) {
                         response.data.map((d) => toast.error(d.message));
                     }
                 } catch (error) {

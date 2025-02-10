@@ -3,6 +3,7 @@ package br.com.mgobo.api.service;
 import br.com.mgobo.api.entities.Assunto;
 import br.com.mgobo.api.repository.AssuntoRepository;
 import br.com.mgobo.api.repository.AssuntoRepositoryImpl;
+import br.com.mgobo.web.advices.HandlerError;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
+import static br.com.mgobo.api.parsers.ParserObject.parserObject;
 import static br.com.mgobo.web.mappers.AssuntoMapper.INSTANCE;
 
 @Service
@@ -50,7 +52,7 @@ public class AssuntoService {
             List<Assunto> assuntos = this.assuntoRepository.findAll();
             return !assuntos.isEmpty()
                     ? ResponseEntity.ok(assuntos.stream().map(INSTANCE::toDto))
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de assuntos...");
+                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Sem registros de assuntos..."))));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("AssuntoService[findAll]", e.getMessage()));
         }
@@ -61,7 +63,7 @@ public class AssuntoService {
             return ResponseEntity.ok(INSTANCE.toDto(this.assuntoRepository.findById(id).get()));
         } catch (Exception ex) {
             if (ex.getCause() instanceof NoResultException) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum assunto encontrado...");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Nenhum assunto encontrado..."))));
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("AssuntoService[findById %s]".formatted(id), ex.getMessage()));
             }

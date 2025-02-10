@@ -23,7 +23,7 @@ public class LivroAssunto extends BaseEntity implements Serializable {
     @ManyToOne
     private Livro livro;
 
-    @JoinColumn(name = "autorId", referencedColumnName = "id")
+    @JoinColumn(name = "assuntoId", referencedColumnName = "id")
     @ManyToOne
     private Assunto assunto;
 }

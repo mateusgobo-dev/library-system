@@ -43,52 +43,70 @@ function Home() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        librarysystem_api.get("/api/v1/assuntos")
-            .then(response => {
-                if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
-                    setAssuntos(response.data);
-                    localStorage.setItem("@assuntos", response.data);
+        const recuperarAssuntos = async () => {
+            try {
+                const response = await librarysystem_api.get("/api/v1/assuntos");
+                console.log(JSON.stringify(response));
+               if (response.status === 200) {
+                    if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
+                        setAssuntos(response.data);
+                        localStorage.setItem("@assuntos", response.data);
+                    }
+                } else if (response.status === 400 || response.status === 404) {
+                   toast.error(response.data);
                 }
-            }).catch(reason => {
-            toast.error(`${reason.response.data}`);
-        });
+            } catch (error) {
+                console.error('Error reading assuntos:', error);
+                toast.error('Erro ao carregar assuntos');
+            }
+        }
+        recuperarAssuntos();
     }, []);
 
     useEffect(() => {
-        librarysystem_api.get("/api/v1/autores")
-            .then(response => {
-                if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
-                    setAutores(response.data);
-                    localStorage.setItem("@autores", response.data);
+        const recuperarAutores = async () => {
+            try {
+                const response = await librarysystem_api.get("/api/v1/autores");
+                console.log(response.status);
+                if (response.status === 200) {
+                    if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
+                        setAutores(response.data);
+                        localStorage.setItem("@autores", response.data);
+                    }
+                } else if (response.status === 400 || response.status === 404) {
+                    toast.error(response.data);
                 }
-            }).catch(reason => {
-            toast.error(`${reason.response.data}`);
-        });
+            } catch (error) {
+                console.error('Error reading autores:', error);
+                toast.error('Erro ao carregar autores');
+            }
+        }
+        recuperarAutores();
     }, []);
 
     useEffect(() => {
-
         const recuperarLivros = async () => {
             try {
                 const response = await librarysystem_api.get("/api/v1/livros");
+                console.log(response);
                 console.log(rule);
                 if (response.status === 200) {
                     if (JSON.stringify(livros) !== JSON.stringify(response.data)) {
                         setLivros(response.data);
                         localStorage.setItem("@livros", response.data);
                     }
-                } else if (response.status === 400) {
+                } else if (response.status === 400 || response.status === 404) {
                     response.data.map((d) => toast.error(d.message));
+                    setError("Sem registros de livros");
                 }
             } catch (error) {
                 console.error('Error reading livros:', error);
                 toast.error('Erro ao carregar livros');
-                setExibirNovoLivro(true);
-                setError(error.response.data);
             }
         };
         recuperarLivros();
         setLoading(false);
+        setExibirNovoLivro(localStorage.getItem("@autores") !== null && localStorage.getItem("@assuntos") !== null);
     }, []);
 
     useEffect(() => {
@@ -168,7 +186,7 @@ function Home() {
                 {exibirNovoLivro ? <Link to="/create">Criar Livro</Link> :
                     <span>Crie os registros de Autores e Assuntos para incluir um novo livro!</span>}
             </div>}
-            {(rule === undefined || rule === 'list')&& error === '' && livros.length > 0 && <div>
+            {(rule === undefined || rule === 'list') && error === '' && livros.length > 0 && <div>
                 <Link to="/create" style={{float: 'right'}}>Criar livro</Link>
                 <table className="table table-striped" width={'100%'}>
                     <thead>
@@ -181,7 +199,8 @@ function Home() {
                     <tbody>
                     {livros.toSorted((a, b) => a.titulo.localeCompare(b.titulo)).map(livro => <tr key={livro.id}>
                         <td width={'5%'}>{livro.id}</td>
-                        <td width={'94%'}>Título: {livro.titulo}<br/>Livro: {livro.editora}<br/>Edição: {livro.edicao}</td>
+                        <td width={'94%'}>Título: {livro.titulo}<br/>Livro: {livro.editora}<br/>Edição: {livro.edicao}
+                        </td>
                         <td width={'1%'}>
                             <button onClick={() => editLivros(livro)}>Alterar</button>
                         </td>

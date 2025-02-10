@@ -4,6 +4,7 @@ import br.com.mgobo.api.entities.*;
 import br.com.mgobo.api.repository.AssuntoRepository;
 import br.com.mgobo.api.repository.AutorRepository;
 import br.com.mgobo.api.repository.LivroRepository;
+import br.com.mgobo.web.advices.HandlerError;
 import br.com.mgobo.web.dto.LivroDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
+import static br.com.mgobo.api.parsers.ParserObject.parserObject;
 import static br.com.mgobo.api.parsers.ParserObject.toJsonString;
 import static br.com.mgobo.web.mappers.LivroMapper.INSTANCE;
 
@@ -88,7 +90,7 @@ public class LivroService {
                     (livro.getLivroAutorCollection().stream().map(livroAutor -> livroAutor.getAutor().getNome()).findFirst()).orElse(null))).toList();
 
             return !livros.isEmpty() ? ResponseEntity.ok(collectionDto)
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body(toJsonString.apply("Sem registros de livros..."));
+                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Sem registros de livros"))));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findAll]", e.getMessage()));
         }
@@ -97,7 +99,13 @@ public class LivroService {
     @Transactional
     public ResponseEntity<?> findById(Long id) {
         try {
-            return ResponseEntity.ok(INSTANCE.toDto(livroRepository.findById(id).get()));
+            Livro livro = livroRepository.findById(id).get();
+            LivroDto livroDto = new LivroDto(livro.getId(),livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(),
+                    (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getId()).findFirst().orElse(null)),
+                    (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getDescricao()).findFirst().orElse(null)),
+                    (livro.getLivroAutorCollection().stream().map(livroAutor -> livroAutor.getAutor().getId()).findFirst().orElse(null)),
+                    (livro.getLivroAutorCollection().stream().map(livroAutor -> livroAutor.getAutor().getNome()).findFirst()).orElse(null));
+            return ResponseEntity.ok(livroDto);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findById%s]".formatted(id), e.getMessage()));
         }

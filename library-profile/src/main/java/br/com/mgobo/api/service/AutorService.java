@@ -3,6 +3,7 @@ package br.com.mgobo.api.service;
 import br.com.mgobo.api.entities.Autor;
 import br.com.mgobo.api.repository.AutorRepository;
 import br.com.mgobo.api.repository.AutorRepositoryImpl;
+import br.com.mgobo.web.advices.HandlerError;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
+import static br.com.mgobo.api.parsers.ParserObject.parserObject;
 import static br.com.mgobo.web.mappers.AutorMapper.INSTANCE;
 
 @Service
@@ -47,7 +49,7 @@ public class AutorService {
         try {
             List<Autor> autores = autorRepository.findAll();
             return !autores.isEmpty() ? ResponseEntity.ok(autores.stream().map(INSTANCE::toDto))
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sem registros de autores...");
+                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Sem registros de autores"))));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("AutorService[findAll]", e.getMessage()));
         }
@@ -58,7 +60,7 @@ public class AutorService {
             return ResponseEntity.ok(INSTANCE.toDto(this.autorRepository.findById(id).get()));
         } catch (Exception ex) {
             if (ex.getCause() instanceof NoResultException) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum assunto encontrado...");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Nenhum assunto encontrado"))));
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("AutorService[findById %s]".formatted(id), ex.getMessage()));
             }

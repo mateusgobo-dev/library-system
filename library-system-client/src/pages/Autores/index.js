@@ -18,19 +18,19 @@ function Autores() {
                 const recuperarAtores = async () => {
                     try {
                         const response = await librarysystem_api.get("/api/v1/autores");
-                        console.log(rule);
                         if (response.status === 200) {
                             if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
                                 setAutores(response.data);
                                 localStorage.setItem("@autores", response.data);
                             }
-                        } else if (response.status === 400) {
+                        } else if (response.status === 400 || response.status === 404) {
                             response.data.map((d) => toast.error(d.message));
+                            setError("Erro na leitura dos autores");
                         }
                     } catch (error) {
                         console.error('Error reading autores:', error);
                         toast.error('Erro ao carregar autores');
-                        setError(error.response.data);
+                        setError("Erro na leitura dos autores");
                     }
                 };
                 recuperarAtores();
