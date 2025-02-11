@@ -29,6 +29,7 @@ function Assuntos() {
                             response.data.map((d) => toast.error(d.message));
                             setError("falha na leitura dos assuntos");
                         }
+                        return;
                     } catch (error) {
                         console.error('Error reading assuntos:', error);
                         toast.error('Erro ao carregar assuntos');
@@ -69,6 +70,7 @@ function Assuntos() {
                     } else if (response.status === 400) {
                         response.data.map((d) => toast.error(d.message));
                     }
+                    return;
                 } catch (error) {
                     console.error('Error creating assunto:', error);
                     toast.error('Erro ao criar assunto');
@@ -82,9 +84,10 @@ function Assuntos() {
                     console.log('Response Status:', response.status);
                     if (response.status === 202) {
                         toast.info(response.data);
-                    } else if (response.status === 400 || response.status == 404) {
+                    } else if (response.status === 400 || response.status === 404) {
                         response.data.map((d) => toast.error(d.message));
                     }
+                    return;
                 } catch (error) {
                     console.error('Error atualizar assunto:', error);
                     toast.error('Erro ao atualizar assunto');

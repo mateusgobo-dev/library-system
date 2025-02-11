@@ -157,10 +157,10 @@
 				<reportElement style="Column header" x="480" y="7" width="69" height="18" forecolor="#000000" uuid="485da919-ad4a-4bd1-973b-c62434bfa763">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cfd92693-e851-4b6b-b953-0c3623241bb5"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="Choco cooky" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Valor R$]]></text>
+				<text><![CDATA[Valor]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -182,7 +182,7 @@
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ed5542b-4737-47e4-af41-6b102441b352"/>
 					</reportElement>
 					<textElement>
-						<font size="10"/>
+						<font fontName="Choco cooky" size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ano_publicacao}]]></textFieldExpression>
 				</textField>
@@ -217,8 +217,10 @@
 					<reportElement stretchType="RelativeToBandHeight" x="480" y="0" width="69" height="18" uuid="a3ef24be-db7f-4261-9b35-49755d02c227">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="96d8d166-3efd-44b3-895b-9d7138173338"/>
 					</reportElement>
-					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{preco} == null ? "Não informado" : new DecimalFormat("#0.00", new DecimalFormatSymbols(Locale.getDefault())).format($F{preco})]]></textFieldExpression>
+					<textElement textAlignment="Center">
+						<font fontName="Choco cooky"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{preco} == null ? "Não informado" : "R$ "+(new DecimalFormat("#0.00", new DecimalFormatSymbols(Locale.getDefault())).format($F{preco}))]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

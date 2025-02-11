@@ -84,7 +84,7 @@ public class LivroService {
     public ResponseEntity<?> findAll() {
         try {
             List<Livro> livros = livroRepository.findAll();
-            List<LivroDto> collectionDto = livros.stream().map(livro -> new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(),
+            List<LivroDto> collectionDto = livros.stream().map(livro -> new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(), livro.getPreco() != null ? livro.getPreco().toString() : "0.00",
                     (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getId()).findFirst().orElse(null)),
                     (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getDescricao()).findFirst().orElse(null)),
                     (livro.getLivroAutorCollection().stream().map(livroAutor -> livroAutor.getAutor().getId()).findFirst().orElse(null)),
@@ -93,7 +93,7 @@ public class LivroService {
             return !livros.isEmpty() ? ResponseEntity.ok(collectionDto)
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body(parserObject.toJson(List.of(HandlerError.instanceOf("404", "Sem registros de livros"))));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findAll]", e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(parserObject.toJson(List.of(HandlerError.instanceOf("400", "Falha na leitura dos livros"))));
         }
     }
 
@@ -101,7 +101,7 @@ public class LivroService {
     public ResponseEntity<?> findById(Long id) {
         try {
             Livro livro = livroRepository.findById(id).get();
-            LivroDto livroDto = new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(),
+            LivroDto livroDto = new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(),  livro.getPreco().toString(),
                     (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getId()).findFirst().orElse(null)),
                     (livro.getLivroAssuntoCollection().stream().map(livroAssunto -> livroAssunto.getAssunto().getDescricao()).findFirst().orElse(null)),
                     (livro.getLivroAutorCollection().stream().map(livroAutor -> livroAutor.getAutor().getId()).findFirst().orElse(null)),

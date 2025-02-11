@@ -75,7 +75,7 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testCreate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", "1", "2024", assuntoDto.id(), "", autorDto.id(), "");
+        LivroDto livroDto = new LivroDto(null, "A ARTE DA GUERRA", "BRASIL", "1", "2024", "32,50", assuntoDto.id(), "", autorDto.id(), "");
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(parserObject.toJson(livroDto)));
@@ -92,10 +92,10 @@ public class LivroControllerTest extends BaseIntegratedTest {
     public void testUpdate() throws Exception {
         AutorDto autorDto = AutorMapper.INSTANCE.toDto(autor);
         AssuntoDto assuntoDto = AssuntoMapper.INSTANCE.toDto(assunto);
-        LivroDto livroDto = new LivroDto(null, "A ARTE DA PAZ", "BRASIL", "2", "2023", assuntoDto.id(), "", autorDto.id(), "");
+        LivroDto livroDto = new LivroDto(null, "A ARTE DA PAZ", "BRASIL", "2", "2023", "32,50", assuntoDto.id(), "", autorDto.id(), "");
 
         Livro livro = this.livroRepository.save(INSTANCE.toEntity(livroDto));
-        LivroDto livroDtoUpdate = new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(), assuntoDto.id(), "", autorDto.id(), "");
+        LivroDto livroDtoUpdate = new LivroDto(livro.getId(), livro.getTitulo(), livro.getEditora(), livro.getEdicao().toString(), livro.getAnoPublicacao(), "20,50",assuntoDto.id(), "", autorDto.id(), "");
 
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.put(url)
                 .contentType(MediaType.APPLICATION_JSON)

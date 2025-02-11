@@ -43,7 +43,7 @@ function Home() {
             }
             recuperarAssuntos();
         }
-    }, []);
+    }, [autores]);
 
     useEffect(() => {
         if(rule !== '/report') {
@@ -55,6 +55,8 @@ function Home() {
                         if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
                             setAutores(response.data);
                             localStorage.setItem("@autores", response.data);
+                            console.log(localStorage.getItem("@autores")[0].id);
+                            console.log("Value"+localStorage.getItem("@assuntos")[0].id);
                         }
                     } else if (response.status === 400 || response.status === 404) {
                         toast.error(response.data);
@@ -66,7 +68,7 @@ function Home() {
             }
             recuperarAutores();
         }
-    }, []);
+    }, [assuntos]);
 
     useEffect(() => {
         if(rule !== '/report') {
@@ -105,11 +107,13 @@ function Home() {
                 setAssunto(livroEditAsObject.assuntoId);
                 setEditora(livroEditAsObject.editora);
                 setTitulo(livroEditAsObject.titulo);
-                setEdicao(livroEditAsObject.edicao)
+                setEdicao(livroEditAsObject.edicao);
+                setValorLivro(livroEditAsObject.preco);
                 setAnoPublicacao(livroEditAsObject.anoPublicacao);
             }
+            return;
         }
-    }, [rule]);
+    }, []);
 
     function editLivros(livro) {
         localStorage.setItem("@livro", JSON.stringify(livro));
@@ -129,10 +133,11 @@ function Home() {
             anoPublicacao: anoPublicacao,
             assuntoId: assunto,
             autorId: autor,
-            valorLivro: valorLivro
+            preco: valorLivro
         };
 
         if (rule === 'create') {
+            console.log(livroDto);
             const createLivros = async () => {
                 try {
                     const response = await librarysystem_api.post("/api/v1/livros", livroDto);
@@ -194,7 +199,8 @@ function Home() {
                         <td width={'5%'}>{livro.id}</td>
                         <td width={'94%'} align={'left'}>Título: {livro.titulo}<br/>Livro: {livro.editora}<br/>Edição: {livro.edicao}<br />
                             Autor: {livro.autor}<br />
-                            Editora: {livro.editora}
+                            Editora: {livro.editora}<br />
+                            Preço R$: {livro.preco === "0.00" ? "Não informado" : livro.preco}
                         </td>
                         <td width={'1%'}>
                             <button onClick={() => editLivros(livro)}>Alterar</button>
@@ -209,7 +215,7 @@ function Home() {
                 <div className="row row-cols-12">
                     <div className="col-md-4">
                         <label htmlFor=" assuntoOption" className="form-label">Selecione o assunto</label><br/>
-                        <select name=" assuntoOption" id="assunto" className="form-control"
+                        <select name=" assuntoOption" id="assunto" className="form-control" value={assunto}
                                 onChange={(e) => setAssunto(e.target.value)}>
                             {assuntos.map((assunto) => {
                                 return (<option key={assunto.id} value={assunto.id}>{assunto.descricao}</option>)
@@ -218,7 +224,7 @@ function Home() {
                     </div>
                     <div className="col-md-4">
                         <label htmlFor=" autorOption" className="form-label">Selecione o autor</label><br/>
-                        <select name=" autorOption" id="autor" className="form-control"
+                        <select name=" autorOption" id="autor" className="form-control" value={autor}
                                 onChange={(e) => setAutor(e.target.value)}>
                             {autores.map((autor) => {
                                 return (<option key={autor.id} value={autor.id}>{autor.nome}</option>)

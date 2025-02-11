@@ -32,6 +32,9 @@ public class Livro extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 4)
     private String anoPublicacao;
 
+    @Column(length = 10, precision = 2)
+    private Double preco;
+
     @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LivroAutor> livroAutorCollection;
 
