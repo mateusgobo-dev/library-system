@@ -158,7 +158,7 @@ public class LivroControllerTest extends BaseIntegratedTest {
     @Test
     public void deleteById() throws Exception {
         LivroDto livroDto = new LivroDto(1l, "", "", "", "", "", 1l,"", 1l, "");
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete(url+"/delete", livroDto)
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(url+"/delete", livroDto)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(parserObject.toJson(livroDto)));
         int status = resultActions.andReturn().getResponse().getStatus();

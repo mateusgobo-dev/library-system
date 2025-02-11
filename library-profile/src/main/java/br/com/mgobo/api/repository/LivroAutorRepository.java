@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LivroAutorRepository extends JpaRepository<LivroAutor, Long> {
-    LivroAutor findLivroAutorByAutor(Autor autor);
-    void deleteAllByLivro(Livro livro, Autor autor);
+    void deleteAllByLivroAndAutor(Livro livro, Autor autor);
 }

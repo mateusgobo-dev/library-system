@@ -124,7 +124,7 @@ public class LivroService {
             Assunto assunto = this.assuntoRepository.findById(assuntoId).get();
             Autor autor = this.autorRepository.findById(autorId).get();
             this.livroAssuntoRepository.deleteAllByLivroAndAssunto(livro,assunto);
-            this.livroAutorRepository.deleteAllByLivro(livro, autor);
+            this.livroAutorRepository.deleteAllByLivroAndAutor(livro, autor);
 
             this.livroRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body(parserObject.toJson(List.of(HandlerError.instanceOf("301", "Registro removido com sucesso"))));
