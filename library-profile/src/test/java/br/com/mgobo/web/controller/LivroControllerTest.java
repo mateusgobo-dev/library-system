@@ -1,8 +1,6 @@
 package br.com.mgobo.web.controller;
 
-import br.com.mgobo.api.entities.Assunto;
-import br.com.mgobo.api.entities.Autor;
-import br.com.mgobo.api.entities.Livro;
+import br.com.mgobo.api.entities.*;
 import br.com.mgobo.api.repository.AssuntoRepository;
 import br.com.mgobo.api.repository.AutorRepository;
 import br.com.mgobo.api.repository.LivroRepository;
@@ -16,11 +14,14 @@ import br.com.mgobo.web.mappers.LivroMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Set;
 
 import static br.com.mgobo.api.parsers.ParserObject.parserObject;
 import static br.com.mgobo.web.mappers.LivroMapper.INSTANCE;
@@ -68,6 +69,25 @@ public class LivroControllerTest extends BaseIntegratedTest {
         this.assunto = new Assunto();
         this.assunto.setDescricao("COMPORTAMENTAL");
         this.assuntoRepository.save(assunto);
+
+        Livro livro = new Livro();
+        livro.setTitulo("Teste");
+        livro.setEditora("Teste");
+        livro.setPreco(1.00);
+        livro.setEdicao(1);
+        livro.setAnoPublicacao("2025");
+
+        LivroAutor livroAutor = new LivroAutor();
+        livroAutor.setAutor(autor);
+        livroAutor.setLivro(livro);
+
+        LivroAssunto livroAssunto = new LivroAssunto();
+        livroAssunto.setAssunto(assunto);
+        livroAssunto.setLivro(livro);
+
+        livro.setLivroAutorCollection(Set.of(livroAutor));
+        livro.setLivroAssuntoCollection(Set.of(livroAssunto));
+        this.livroRepository.save(livro);
     }
 
     @Order(1)
@@ -130,6 +150,22 @@ public class LivroControllerTest extends BaseIntegratedTest {
             assertEquals(200, status, "Sucesso na requisição");
             System.out.println(resultActions.andReturn().getResponse().getContentAsString());
         } catch (Exception e) {
+            fail(ERROR_REQUEST.formatted(e.getMessage(), status));
+        }
+    }
+
+    @Order(5)
+    @Test
+    public void deleteById() throws Exception {
+        LivroDto livroDto = new LivroDto(1l, "", "", "", "", "", 1l,"", 1l, "");
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete(url+"/delete", livroDto)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(parserObject.toJson(livroDto)));
+        int status = resultActions.andReturn().getResponse().getStatus();
+        try{
+            assertEquals(HttpStatus.MOVED_PERMANENTLY.value(), status, "Sucesso na requisição");
+            System.out.println(resultActions.andReturn().getResponse().getContentAsString());
+        }catch (Exception e){
             fail(ERROR_REQUEST.formatted(e.getMessage(), status));
         }
     }

@@ -5,6 +5,7 @@ import br.com.mgobo.web.dto.AssuntoDto;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -90,6 +91,19 @@ public class AssuntoControllerTest extends BaseIntegratedTest {
         int status = resultActions.andReturn().getResponse().getStatus();
         try{
             assertEquals(200, status, "Sucesso na requisição");
+            System.out.println(resultActions.andReturn().getResponse().getContentAsString());
+        }catch (Exception e){
+            fail(ERROR_REQUEST.formatted(e.getMessage(), status));
+        }
+    }
+
+    @Order(5)
+    @Test
+    public void deleteById() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.delete(url+"/1"));
+        int status = resultActions.andReturn().getResponse().getStatus();
+        try{
+            assertEquals(HttpStatus.MOVED_PERMANENTLY.value(), status, "Sucesso na requisição");
             System.out.println(resultActions.andReturn().getResponse().getContentAsString());
         }catch (Exception e){
             fail(ERROR_REQUEST.formatted(e.getMessage(), status));

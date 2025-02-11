@@ -36,4 +36,9 @@ public class AssuntoController {
     public ResponseEntity<?> update(@Valid @RequestBody AssuntoDto assuntoDto) {
         return assuntoService.update(INSTANCE.toEntity(assuntoDto));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return assuntoService.delete(id);
+    }
 }

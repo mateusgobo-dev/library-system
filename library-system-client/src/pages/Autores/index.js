@@ -21,7 +21,7 @@ function Autores() {
                         if (response.status === 200) {
                             if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
                                 setAutores(response.data);
-                                localStorage.setItem("@autores", response.data);
+                                localStorage.setItem("@autores", JSON.stringify(response.data));
                             }
                         } else if (response.status === 400 || response.status === 404) {
                             response.data.map((d) => toast.error(d.message));
@@ -62,6 +62,7 @@ function Autores() {
                     const response = await librarysystem_api.post("/api/v1/autores", JSON.stringify(autorDto));
                     if (response.status === 201) {
                         toast.info(response.data);
+                        document.getElementById('nome').value = '';
                     } else if (response.status === 400) {
                         response.data.map((d) => toast.error(d.message));
                     }
@@ -90,9 +91,37 @@ function Autores() {
         }
     }
 
-    function editAssunto(autor) {
+    function editAutor(autor) {
         localStorage.setItem("autor", JSON.stringify(autor));
         window.location.href = "/autores/edit";
+    }
+
+    function removerAutor(autorId) {
+        const removeAutor = async () => {
+            try {
+                const response = await librarysystem_api.delete("/api/v1/autores/"+autorId);
+                console.log('Response Status:', response.status);
+                if (response.status === 301) {
+                    toast.info(response.data);
+                    const autoresStorage = JSON.parse(localStorage.getItem("@autores"));
+                    const autoresCollection = [];
+                    autoresStorage.map(autor => {
+                        if(autor.id !== autorId)autoresCollection.push(autor);
+                    });
+                    localStorage.removeItem("@autores");
+                    localStorage.setItem("@autores",autoresCollection);
+
+                    window.location.href = '/autores/list';
+                } else if (response.status === 400 || response.status === 404) {
+                    response.data.map((d) => toast.error(d.message));
+                }
+                return;
+            } catch (error) {
+                console.error('Error remove assunto:', error);
+                toast.error('Erro ao remover assunto');
+            }
+        };
+        removeAutor();
     }
 
     if (loading) {
@@ -127,7 +156,8 @@ function Autores() {
                                 <td width={'5%'}>{autor.id}</td>
                                 <td width={'94%'} align={'left'}>{autor.nome}</td>
                                 <td width={'1%'}>
-                                    <button onClick={() => editAssunto(autor)}>Alterar</button>
+                                    <button onClick={() => editAutor(autor)}>Alterar</button><br />
+                                    <button onClick={() => removerAutor(autor.id)}>Remover</button>
                                 </td>
                             </tr>
                         )}

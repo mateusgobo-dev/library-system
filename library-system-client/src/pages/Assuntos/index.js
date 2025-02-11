@@ -23,7 +23,7 @@ function Assuntos() {
                         if (response.status === 200) {
                             if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
                                 setAssuntos(response.data);
-                                localStorage.setItem("@assuntos", response.data);
+                                localStorage.setItem("@assuntos", JSON.stringify(response.data));
                             }
                         } else if (response.status === 400 || response.status === 404) {
                             response.data.map((d) => toast.error(d.message));
@@ -66,7 +66,7 @@ function Assuntos() {
                     console.log('Response Status:', response.status);
                     if (response.status === 201) {
                         toast.info(response.data);
-
+                        document.getElementById('descricao').value = '';
                     } else if (response.status === 400) {
                         response.data.map((d) => toast.error(d.message));
                     }
@@ -102,6 +102,34 @@ function Assuntos() {
         window.location.href = "/assuntos/edit";
     }
 
+    function removerAssunto(assuntoId) {
+        const removeAssunto = async () => {
+            try {
+                const response = await librarysystem_api.delete("/api/v1/assuntos/"+assuntoId);
+                console.log('Response Status:', response.status);
+                if (response.status === 301) {
+                    toast.info(response.data);
+                    const assuntosStorage = JSON.parse(localStorage.getItem("@assuntos"));
+                    const assuntosCollection = [];
+                    assuntosStorage.map(assunto => {
+                        if(assunto.id !== assuntoId)assuntosCollection.push(assunto);
+                    });
+                    localStorage.removeItem("@assuntos");
+                    localStorage.setItem("@assuntos",assuntosCollection);
+
+                    window.location.href = '/assuntos/list';
+                } else if (response.status === 400 || response.status === 404) {
+                    response.data.map((d) => toast.error(d.message));
+                }
+                return;
+            } catch (error) {
+                console.error('Error remove assunto:', error);
+                toast.error('Erro ao remover assunto');
+            }
+        };
+        removeAssunto();
+    }
+
     if (loading) {
         return (
             <div className="loading">
@@ -134,7 +162,8 @@ function Assuntos() {
                                 <td width={'5%'}>{assunto.id}</td>
                                 <td width={'94%'} align={'left'}>{assunto.descricao}</td>
                                 <td width={'1%'}>
-                                    <button onClick={() => editAssunto(assunto)}>Alterar</button>
+                                    <button onClick={() => editAssunto(assunto)}>Alterar</button><br />
+                                    <button onClick={() => removerAssunto(assunto.id)}>Remover</button>
                                 </td>
                             </tr>
                         )}

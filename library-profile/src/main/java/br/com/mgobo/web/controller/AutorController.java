@@ -36,4 +36,9 @@ public class AutorController {
     public ResponseEntity<?> update(@Valid  @RequestBody AutorDto autorDto) {
         return autorService.update(INSTANCE.toEntity(autorDto));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return autorService.delete(id);
+    }
 }

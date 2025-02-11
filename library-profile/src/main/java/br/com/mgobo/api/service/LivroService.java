@@ -1,9 +1,7 @@
 package br.com.mgobo.api.service;
 
 import br.com.mgobo.api.entities.*;
-import br.com.mgobo.api.repository.AssuntoRepository;
-import br.com.mgobo.api.repository.AutorRepository;
-import br.com.mgobo.api.repository.LivroRepository;
+import br.com.mgobo.api.repository.*;
 import br.com.mgobo.web.advices.HandlerError;
 import br.com.mgobo.web.dto.LivroDto;
 import jakarta.transaction.Transactional;
@@ -17,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static br.com.mgobo.api.HttpErrorsMessage.*;
 import static br.com.mgobo.api.parsers.ParserObject.parserObject;
@@ -29,6 +28,8 @@ public class LivroService {
     private final LivroRepository livroRepository;
     private final AutorRepository autorRepository;
     private final AssuntoRepository assuntoRepository;
+    private final LivroAutorRepository livroAutorRepository;
+    private final LivroAssuntoRepository livroAssuntoRepository;
 
     private LivroAssunto livroAssunto(Livro livro, Assunto assunto) {
         LivroAssunto livroAssunto = new LivroAssunto();
@@ -109,6 +110,26 @@ public class LivroService {
             return ResponseEntity.ok(livroDto);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BAD_REQUEST.getMessage().formatted("LivroService[findById%s]".formatted(id), e.getMessage()));
+        }
+    }
+
+    @Transactional
+    public ResponseEntity<?> delete(LivroDto livroDto) {
+        try {
+            Long id = livroDto.id();
+            Long autorId = livroDto.autorId();
+            Long assuntoId = livroDto.assuntoId();
+
+            Livro livro = this.livroRepository.findById(id).get();
+            Assunto assunto = this.assuntoRepository.findById(assuntoId).get();
+            Autor autor = this.autorRepository.findById(autorId).get();
+            this.livroAssuntoRepository.deleteAllByLivroAndAssunto(livro,assunto);
+            this.livroAutorRepository.deleteAllByLivro(livro, autor);
+
+            this.livroRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body(parserObject.toJson(List.of(HandlerError.instanceOf("301", "Registro removido com sucesso"))));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(parserObject.toJson(List.of(HandlerError.instanceOf("400", (e.getMessage().toLowerCase().contains("foreign key") ? "Não é permitido excluir o livro" : "Erro na exclusão do livro")))));
         }
     }
 }

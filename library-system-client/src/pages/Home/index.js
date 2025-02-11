@@ -31,7 +31,7 @@ function Home() {
                     if (response.status === 200) {
                         if (JSON.stringify(assuntos) !== JSON.stringify(response.data)) {
                             setAssuntos(response.data);
-                            localStorage.setItem("@assuntos", response.data);
+                            localStorage.setItem("@assuntos", JSON.stringify(response.data));
                         }
                     } else if (response.status === 400 || response.status === 404) {
                         toast.error(response.data);
@@ -54,9 +54,7 @@ function Home() {
                     if (response.status === 200) {
                         if (JSON.stringify(autores) !== JSON.stringify(response.data)) {
                             setAutores(response.data);
-                            localStorage.setItem("@autores", response.data);
-                            console.log(localStorage.getItem("@autores")[0].id);
-                            console.log("Value"+localStorage.getItem("@assuntos")[0].id);
+                            localStorage.setItem("@autores", JSON.stringify(response.data));
                         }
                     } else if (response.status === 400 || response.status === 404) {
                         toast.error(response.data);
@@ -80,7 +78,7 @@ function Home() {
                     if (response.status === 200) {
                         if (JSON.stringify(livros) !== JSON.stringify(response.data)) {
                             setLivros(response.data);
-                            localStorage.setItem("@livros", response.data);
+                            localStorage.setItem("@livros", JSON.stringify(response.data));
                         }
                     } else if (response.status === 400 || response.status === 404) {
                         response.data.map((d) => toast.error(d.message));
@@ -120,6 +118,34 @@ function Home() {
         window.location.href = '/edit';
     }
 
+    function removerLivro(livroDto) {
+        const removeLivro = async () => {
+            try {
+                const response = await librarysystem_api.post("/api/v1/livros/delete", livroDto);
+                console.log('Response Status:', response.status);
+                if (response.status === 301) {
+                    toast.info(response.data);
+                    const livrosStorage = JSON.parse(localStorage.getItem("@livros"));
+                    const livrosCollection = [];
+                    livrosStorage.map(livro => {
+                        if(livro.id !== livroDto.id)livrosCollection.push(livroDto);
+                    });
+                    localStorage.removeItem("@livros");
+                    localStorage.setItem("@livros",livrosCollection);
+
+                    window.location.href = '/list';
+                } else if (response.status === 400 || response.status === 404) {
+                    response.data.map((d) => toast.error(d.message));
+                }
+                return;
+            } catch (error) {
+                console.error('Error remove livro:', error);
+                toast.error('Erro ao remover livro');
+            }
+        };
+        removeLivro();
+    }
+
     function criarRelatorio(){
         window.open("http://localhost:8080/api/v1/reports/library-books", "Relatório Geral de Livros", "width=600,height=400,scrollbars=yes");
     }
@@ -137,7 +163,6 @@ function Home() {
         };
 
         if (rule === 'create') {
-            console.log(livroDto);
             const createLivros = async () => {
                 try {
                     const response = await librarysystem_api.post("/api/v1/livros", livroDto);
@@ -203,7 +228,8 @@ function Home() {
                             Preço R$: {livro.preco === "0.00" ? "Não informado" : livro.preco}
                         </td>
                         <td width={'1%'}>
-                            <button onClick={() => editLivros(livro)}>Alterar</button>
+                            <button onClick={() => editLivros(livro)}>Alterar</button><br />
+                            <button onClick={() => removerLivro(livro)}>Revmoer</button>
                         </td>
                     </tr>)}
                     </tbody>

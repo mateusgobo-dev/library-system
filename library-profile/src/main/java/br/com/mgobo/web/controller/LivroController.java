@@ -34,4 +34,9 @@ public class LivroController {
     public ResponseEntity<?> update(@RequestBody LivroDto livroDto) {
         return livroService.update(livroDto);
     }
+
+    @PostMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody LivroDto livroDto) {
+        return livroService.delete(livroDto);
+    }
 }

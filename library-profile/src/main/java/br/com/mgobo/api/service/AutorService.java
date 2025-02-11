@@ -66,4 +66,13 @@ public class AutorService {
             }
         }
     }
+
+    public ResponseEntity<?> delete(Long id) {
+        try {
+            this.autorRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body(parserObject.toJson(List.of(HandlerError.instanceOf("301", "Registro removido com sucesso"))));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(parserObject.toJson(List.of(HandlerError.instanceOf("400", (e.getMessage().toLowerCase().contains("foreign key") ? "Não é permitido excluir o autor, ele está associado à algum livro" : "Erro na exclusão do autor")))));
+        }
+    }
 }
