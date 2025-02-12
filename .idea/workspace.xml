@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AssuntoServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,50 +34,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.AssuntoControllerTest.deleteAll.executor": "Debug",
-    "JUnit.AssuntoControllerTest.executor": "Run",
-    "JUnit.AssuntoServiceTest.executor": "Run",
-    "JUnit.AutorControllerTest.deleteById.executor": "Debug",
-    "JUnit.AutorControllerTest.executor": "Run",
-    "JUnit.AutorControllerTest.testFindAll.executor": "Debug",
-    "JUnit.AutorServiceTest.executor": "Run",
-    "JUnit.AutorServiceTest.testDelete.executor": "Debug",
-    "JUnit.AutorServiceTest.testFindAll.executor": "Debug",
-    "JUnit.AutorServiceTest.testFindById.executor": "Debug",
-    "JUnit.AutorServiceTest.testSave.executor": "Debug",
-    "JUnit.AutorServiceTest.testUpdate.executor": "Debug",
-    "JUnit.LivroControllerTest.deleteById.executor": "Debug",
-    "JUnit.LivroControllerTest.executor": "Run",
-    "JUnit.LivroControllerTest.testCreate.executor": "Debug",
-    "JUnit.LivroControllerTest.testUpdate.executor": "Run",
-    "Maven.library-profile [clean].executor": "Run",
-    "Maven.library-profile [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.LibraryProfileApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "/home/mateusgobo/ideaIU-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AssuntoControllerTest.deleteAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AssuntoControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssuntoServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AutorControllerTest.deleteById.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AutorControllerTest.testFindAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AutorServiceTest.testDelete.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorServiceTest.testFindAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorServiceTest.testFindById.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorServiceTest.testSave.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AutorServiceTest.testUpdate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LivroControllerTest.deleteById.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LivroControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LivroControllerTest.testCreate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LivroControllerTest.testUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.library-profile [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.library-profile [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LibraryProfileApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mateus.gobo/github-repo/library-system&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/mateusgobo/ideaIU-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="br.com.mgobo.web.advices" />
@@ -242,6 +233,7 @@
       <workItem from="1739114245092" duration="13102000" />
       <workItem from="1739233202837" duration="5849000" />
       <workItem from="1739281017852" duration="3083000" />
+      <workItem from="1739356460498" duration="1370000" />
     </task>
     <servers />
   </component>
@@ -263,7 +255,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
-          <line>26</line>
+          <line>24</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -273,7 +265,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
-          <line>37</line>
+          <line>35</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -288,7 +280,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
-          <line>47</line>
+          <line>45</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
