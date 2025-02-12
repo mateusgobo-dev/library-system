@@ -30,4 +30,9 @@ Para compilar a aplicação, execute o comando:
 ```
 npx react-scripts build
 ```
+Rodando a aplicação local:
+```
+npm install -g serve
+serve -s build
+```
 

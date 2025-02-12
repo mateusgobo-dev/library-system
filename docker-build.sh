@@ -1,0 +1,1 @@
+docker build -t library-profile:v1 .

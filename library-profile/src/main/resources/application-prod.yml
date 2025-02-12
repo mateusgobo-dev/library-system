@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: library-profile
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://library-db:5435/library-db
+    password: 123
+    username: sa
+    hikari:
+      maximum-pool-size: 100
+      pool-name: library-profile-hk
+      minimum-idle: 10
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+  data:
+    jdbc:
+      dialect: postgresql

@@ -1,0 +1,33 @@
+services:
+  library-db:
+    image: postgres
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=library-db
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /home/containers/library-db/mount:/var/lib/postgresql/data
+    networks:
+      - library_network
+
+
+  library-profile:
+    image: library-profile:v1
+    ports:
+      - "8085:8080"
+      - "3001:3000"
+    environment:
+      - SPRING_PROFILE_ACTIVE=prod
+    depends_on:
+      - library-db
+    networks:
+      - library_network
+
+networks:
+  library_network:
+    driver: bridge
+
+
