@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+.all-tables-size{
+  width: 100%;
+  float: left;
+  height: 80vh;
+  overflow: auto;
+}
+
+.div-table{
+  width: 100%;
+  float: left;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.div-table-id {
+  width: 5%;
+  float: left;
+  text-align: center;
+}
+
+.div-table-data {
+  width: 94%;
+  float: left;
+  text-align: left;
+}
+
+.div-table-link {
+  width: 1%;
+  float: left;
+}
+
+.div-table-rodape {
+  width: 100%;
+  float: left;
+  border: 1px solid black
+}

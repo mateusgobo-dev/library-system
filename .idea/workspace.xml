@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AssuntoServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/script_relatorio.sql" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/script_relatorio.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/LibraryProfileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/LibraryProfileApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAutorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/repository/LivroAutorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/LivroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AssuntoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Assuntos/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Autores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,9 +47,16 @@
   "keyToString": {
     "JUnit.AssuntoControllerTest.deleteAll.executor": "Debug",
     "JUnit.AssuntoControllerTest.executor": "Run",
+    "JUnit.AssuntoServiceTest.executor": "Run",
     "JUnit.AutorControllerTest.deleteById.executor": "Debug",
     "JUnit.AutorControllerTest.executor": "Run",
     "JUnit.AutorControllerTest.testFindAll.executor": "Debug",
+    "JUnit.AutorServiceTest.executor": "Run",
+    "JUnit.AutorServiceTest.testDelete.executor": "Debug",
+    "JUnit.AutorServiceTest.testFindAll.executor": "Debug",
+    "JUnit.AutorServiceTest.testFindById.executor": "Debug",
+    "JUnit.AutorServiceTest.testSave.executor": "Debug",
+    "JUnit.AutorServiceTest.testUpdate.executor": "Debug",
     "JUnit.LivroControllerTest.deleteById.executor": "Debug",
     "JUnit.LivroControllerTest.executor": "Run",
     "JUnit.LivroControllerTest.testCreate.executor": "Debug",
@@ -61,7 +70,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.LibraryProfileApplication.executor": "Debug",
+    "Spring Boot.LibraryProfileApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system",
@@ -74,7 +83,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "/home/mateus.gobo/intellij/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/home/mateusgobo/ideaIU-2024.3.1.1/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -93,89 +102,87 @@
       <recent name="Livro" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.mgobo.api.unit" />
       <recent name="br.com.mgobo.api.repository" />
       <recent name="br.com.mgobo.web.dto" />
       <recent name="br.com.mgobo.api.service" />
       <recent name="br.com.mgobo.api.entities" />
-      <recent name="br.com.mgobo.web.mappers" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.LibraryProfileApplication">
-    <configuration name="AssuntoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AssuntoServiceTest">
+    <configuration name="AssuntoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
+          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AssuntoControllerTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AssuntoServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AssuntoControllerTest.deleteAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AutorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
+          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AssuntoControllerTest" />
-      <option name="METHOD_NAME" value="deleteAll" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AutorControllerTest.deleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="library-profile" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AutorControllerTest" />
-      <option name="METHOD_NAME" value="deleteById" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LivroControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="library-profile" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.LivroControllerTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LivroControllerTest.deleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AutorServiceTest.testDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
+          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.LivroControllerTest" />
-      <option name="METHOD_NAME" value="deleteById" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
+      <option name="METHOD_NAME" value="testDelete" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AutorServiceTest.testFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-profile" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
+      <option name="METHOD_NAME" value="testFindAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AutorServiceTest.testFindById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-profile" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
+      <option name="METHOD_NAME" value="testFindById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -189,20 +196,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.AssuntoControllerTest.deleteAll" />
-      <item itemvalue="JUnit.AutorControllerTest.deleteById" />
-      <item itemvalue="JUnit.LivroControllerTest.deleteById" />
-      <item itemvalue="JUnit.AssuntoControllerTest" />
-      <item itemvalue="JUnit.LivroControllerTest" />
+      <item itemvalue="JUnit.AssuntoServiceTest" />
+      <item itemvalue="JUnit.AutorServiceTest" />
+      <item itemvalue="JUnit.AutorServiceTest.testDelete" />
+      <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
+      <item itemvalue="JUnit.AutorServiceTest.testFindById" />
       <item itemvalue="Spring Boot.LibraryProfileApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AssuntoControllerTest" />
-        <item itemvalue="JUnit.LivroControllerTest" />
-        <item itemvalue="JUnit.LivroControllerTest.deleteById" />
-        <item itemvalue="JUnit.AutorControllerTest.deleteById" />
-        <item itemvalue="JUnit.AssuntoControllerTest.deleteAll" />
+        <item itemvalue="JUnit.AssuntoServiceTest" />
+        <item itemvalue="JUnit.AutorServiceTest" />
+        <item itemvalue="JUnit.AutorServiceTest.testFindById" />
+        <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
+        <item itemvalue="JUnit.AutorServiceTest.testDelete" />
       </list>
     </recent_temporary>
   </component>
@@ -245,34 +252,49 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/web/advices/GlobalExceptionHandler.java</url>
           <line>21</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="73" />
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/service/AutorService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/api/unit/AutorServiceTest.java</url>
           <line>102</line>
-          <option name="timeStamp" value="74" />
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

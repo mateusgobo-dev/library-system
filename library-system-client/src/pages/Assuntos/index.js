@@ -105,17 +105,17 @@ function Assuntos() {
     function removerAssunto(assuntoId) {
         const removeAssunto = async () => {
             try {
-                const response = await librarysystem_api.delete("/api/v1/assuntos/"+assuntoId);
+                const response = await librarysystem_api.delete("/api/v1/assuntos/" + assuntoId);
                 console.log('Response Status:', response.status);
                 if (response.status === 301) {
                     toast.info(response.data);
                     const assuntosStorage = JSON.parse(localStorage.getItem("@assuntos"));
                     const assuntosCollection = [];
                     assuntosStorage.map(assunto => {
-                        if(assunto.id !== assuntoId)assuntosCollection.push(assunto);
+                        if (assunto.id !== assuntoId) assuntosCollection.push(assunto);
                     });
                     localStorage.removeItem("@assuntos");
-                    localStorage.setItem("@assuntos",assuntosCollection);
+                    localStorage.setItem("@assuntos", assuntosCollection);
 
                     window.location.href = '/assuntos/list';
                 } else if (response.status === 400 || response.status === 404) {
@@ -148,27 +148,36 @@ function Assuntos() {
             {rule === 'list' && error === '' && assuntos.length > 0 &&
                 <div className="container-fluid">
                     <Link to="/assuntos/create" style={{float: 'right'}}>Criar assunto</Link>
-                    <table className="table table-striped" width={'100%'}>
-                        <thead>
-                        <tr>
-                            <td>Id</td>
-                            <td>Assunto</td>
-                            <td></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {assuntos.toSorted((a, b) => a.descricao.localeCompare(b.descricao)).map(assunto =>
-                            <tr key={assunto.id}>
-                                <td width={'5%'}>{assunto.id}</td>
-                                <td width={'94%'} align={'left'}>{assunto.descricao}</td>
-                                <td width={'1%'}>
-                                    <button onClick={() => editAssunto(assunto)}>Alterar</button><br />
-                                    <button onClick={() => removerAssunto(assunto.id)}>Remover</button>
-                                </td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table>
+                    <div className="div-table">
+                        <div className="div-table-id">#</div>
+                        <div className="div-table-data">Assuntos registrados</div>
+                        <div className="div-table-link"></div>
+                    </div>
+                    <div className="all-tables-size">
+                        <table className="table table-striped" width={'100%'}>
+                            <tbody>
+                            {assuntos.toSorted((a, b) => a.descricao.localeCompare(b.descricao)).map(assunto =>
+                                <tr key={assunto.id}>
+                                    <td width={'5%'}>{assunto.id}</td>
+                                    <td width={'94%'} align={'left'}>{assunto.descricao}</td>
+                                    <td width={'1%'}>
+                                        <button className="btn btn-primary"
+                                                style={{width: 90 + "px", marginBottom: 10 + "px"}}
+                                                onClick={() => editAssunto(assunto)}>Alterar
+                                        </button>
+                                        <br/>
+                                        <button className="btn btn-danger" style={{width: 90 + "px"}}
+                                                onClick={() => removerAssunto(assunto.id)}>Remover
+                                        </button>
+                                    </td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="container div-table-rodape">
+                        Total {assuntos.length} assuntos registrados
+                    </div>
                 </div>
             }
             {rule !== 'list' &&

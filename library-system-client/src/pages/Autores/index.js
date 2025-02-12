@@ -99,17 +99,17 @@ function Autores() {
     function removerAutor(autorId) {
         const removeAutor = async () => {
             try {
-                const response = await librarysystem_api.delete("/api/v1/autores/"+autorId);
+                const response = await librarysystem_api.delete("/api/v1/autores/" + autorId);
                 console.log('Response Status:', response.status);
                 if (response.status === 301) {
                     toast.info(response.data);
                     const autoresStorage = JSON.parse(localStorage.getItem("@autores"));
                     const autoresCollection = [];
                     autoresStorage.map(autor => {
-                        if(autor.id !== autorId)autoresCollection.push(autor);
+                        if (autor.id !== autorId) autoresCollection.push(autor);
                     });
                     localStorage.removeItem("@autores");
-                    localStorage.setItem("@autores",autoresCollection);
+                    localStorage.setItem("@autores", autoresCollection);
 
                     window.location.href = '/autores/list';
                 } else if (response.status === 400 || response.status === 404) {
@@ -142,27 +142,36 @@ function Autores() {
             {(rule === 'list' && error === '') &&
                 <div className="container-fluid">
                     <Link to="/autores/create" style={{float: 'right'}}>Criar autor</Link>
-                    <table className="table table-striped" width={'100%'}>
-                        <thead>
-                        <tr>
-                            <td>Id</td>
-                            <td>Autores</td>
-                            <td></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {autores.toSorted((a, b) => a.nome.localeCompare(b.nome)).map(autor =>
-                            <tr key={autor.id}>
-                                <td width={'5%'}>{autor.id}</td>
-                                <td width={'94%'} align={'left'}>{autor.nome}</td>
-                                <td width={'1%'}>
-                                    <button onClick={() => editAutor(autor)}>Alterar</button><br />
-                                    <button onClick={() => removerAutor(autor.id)}>Remover</button>
-                                </td>
-                            </tr>
-                        )}
-                        </tbody>
-                    </table>
+                    <div className="div-table">
+                        <div className="div-table-id">#</div>
+                        <div className="div-table-data">Autores registrados</div>
+                        <div className="div-table-link"></div>
+                    </div>
+                    <div className="all-tables-size">
+                        <table className="table table-striped" width={'100%'}>
+                            <tbody>
+                            {autores.toSorted((a, b) => a.nome.localeCompare(b.nome)).map(autor =>
+                                <tr key={autor.id}>
+                                    <td width={'5%'}>{autor.id}</td>
+                                    <td width={'94%'} align={'left'}>{autor.nome}</td>
+                                    <td width={'1%'}>
+                                        <button className="btn btn-primary"
+                                                style={{width: 90 + "px", marginBottom: 10 + "px"}}
+                                                onClick={() => editAutor(autor)}>Alterar
+                                        </button>
+                                        <br/>
+                                        <button className="btn btn-danger" style={{width: 90 + "px"}}
+                                                onClick={() => removerAutor(autor.id)}>Remover
+                                        </button>
+                                    </td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="container div-table-rodape">
+                        Total {autores.length} assuntos registrados
+                    </div>
                 </div>
             }
             {rule !== 'list' &&

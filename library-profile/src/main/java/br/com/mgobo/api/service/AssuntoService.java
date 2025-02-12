@@ -2,9 +2,7 @@ package br.com.mgobo.api.service;
 
 import br.com.mgobo.api.entities.Assunto;
 import br.com.mgobo.api.repository.AssuntoRepository;
-import br.com.mgobo.api.repository.AssuntoRepositoryImpl;
 import br.com.mgobo.web.advices.HandlerError;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +21,6 @@ import static br.com.mgobo.web.mappers.AssuntoMapper.INSTANCE;
 @RequiredArgsConstructor
 public class AssuntoService {
     private final AssuntoRepository assuntoRepository;
-    private final AssuntoRepositoryImpl assuntoRepositoryImpl;
-    private final EntityManagerFactory entityManagerFactory;
 
     public ResponseEntity<?> save(Assunto assunto) {
         try {
@@ -74,7 +70,7 @@ public class AssuntoService {
         try {
             this.assuntoRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).body(parserObject.toJson(List.of(HandlerError.instanceOf("301", "Registro removido com sucesso"))));
-        }catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(parserObject.toJson(List.of(HandlerError.instanceOf("400", (e.getMessage().toLowerCase().contains("foreign key") ? "Não é permitido excluir o assunto, ele está associado à algum livro" : "Erro na exclusão do assunto")))));
         }
     }

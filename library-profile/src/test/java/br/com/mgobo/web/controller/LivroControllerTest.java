@@ -10,7 +10,6 @@ import br.com.mgobo.web.dto.AutorDto;
 import br.com.mgobo.web.dto.LivroDto;
 import br.com.mgobo.web.mappers.AssuntoMapper;
 import br.com.mgobo.web.mappers.AutorMapper;
-import br.com.mgobo.web.mappers.LivroMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
