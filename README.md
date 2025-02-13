@@ -36,3 +36,10 @@ npm install -g serve
 serve -s build
 ```
 
+### Rodando a aplicação standalone
+Execute o comando da raíz do projeto:
+```
+sh docker-build.sh
+```
+A aplicação responde na porta **3001**, portanto, http://localhost:3001
+

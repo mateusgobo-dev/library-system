@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chococooky.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/fonts/Chococooky.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/docker-build.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application-prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +45,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yaml.library-profile: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
     "JUnit.AssuntoControllerTest.deleteAll.executor": "Debug",
     "JUnit.AssuntoControllerTest.executor": "Run",
@@ -79,7 +76,7 @@
     "Spring Boot.LibraryProfileApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/mateusgobo/github-repo/library-system/library-profile/src/main/resources",
+    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system/library-profile/src/main/resources/fonts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -98,11 +95,11 @@
       <recent name="br.com.mgobo.web.advices" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/library-profile/src/main/resources/fonts" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/library-profile/src/main/resources" />
       <recent name="$PROJECT_DIR$/library-profile/src/main/resources/reports" />
       <recent name="$PROJECT_DIR$/library-system-client/src/pages" />
-      <recent name="$PROJECT_DIR$/library-system-client/src" />
-      <recent name="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Livro" />
@@ -161,30 +158,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSuite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="library-profile" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.mgobo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
-        <option name="credential" />
-        <option name="region" />
-        <option name="useCurrentConnection" value="false" />
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.TestSuite" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <envs>
-        <env name="spring.profiles.active" value="test" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LibraryProfileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library-profile" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.mgobo.LibraryProfileApplication" />
@@ -206,21 +179,34 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yaml.library-profile: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="library-profile" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yaml.library-profile: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       <item itemvalue="JUnit.AssuntoControllerTest" />
       <item itemvalue="JUnit.AutorControllerTest" />
       <item itemvalue="JUnit.LivroControllerTest" />
-      <item itemvalue="JUnit.TestSuite" />
       <item itemvalue="Spring Boot.LibraryProfileApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.library-profile: Compose Deployment" />
         <item itemvalue="JUnit.AutorControllerTest" />
         <item itemvalue="JUnit.LivroControllerTest" />
         <item itemvalue="JUnit.AssuntoControllerTest" />
-        <item itemvalue="JUnit.TestSuite" />
       </list>
     </recent_temporary>
   </component>

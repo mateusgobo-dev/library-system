@@ -17,14 +17,25 @@ services:
   library-profile:
     container_name: library-profile
     image: library-profile:v1
-    entrypoint: ["/bin/sh", "-c", "serve -s build"]
+    entrypoint: ["/bin/sh", "-c", "java -jar library-system.jar"]
     ports:
       - "8080:8080"
-      - "3001:3000"
     environment:
       - spring_profiles_active=prod
     depends_on:
       - library-db
+    networks:
+      - library_network
+
+  library-profile-app:
+    container_name: library-profile-app
+    image: library-profile:v1
+    entrypoint: ["/bin/sh", "-c", "serve -s build"]
+    ports:
+      - "3001:3000"
+    depends_on:
+      - library-db
+      - library-profile
     networks:
       - library_network
 

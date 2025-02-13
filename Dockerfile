@@ -8,12 +8,11 @@ RUN apt-get update && \
     apt-get install -y nodejs && \
     mkdir library-system && \
     java -version && \
-    node -v
+    node -v && \
+    cd /usr/lib/jvm/java-21-openjdk-amd64/lib && \
+    mkdir fonts
 
+COPY Chococooky.ttf /usr/lib/jvm/java-21-openjdk-amd64/lib/fonts/
 COPY library-profile/target/library-profile-0.0.1-SNAPSHOT.jar library-system.jar
 COPY library-system-client/build build
 RUN npm install -g serve
-
-RUN printf 'echo "Iniciando react app" && serve -s build && java -jar library-system.jar' >> runnable.sh
-
-ENTRYPOINT ["sh", "runnable.sh"]
