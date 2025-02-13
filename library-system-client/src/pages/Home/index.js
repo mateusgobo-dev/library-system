@@ -160,6 +160,10 @@ function Home() {
             autorId: autor,
             preco: valorLivro
         };
+        if(assunto === 0 || autor === 0){
+            toast.warn('Assunto e autor são obrigatórios!');
+            return;
+        }
 
         if (rule === 'create') {
             const createLivros = async () => {
@@ -254,6 +258,7 @@ function Home() {
                         <label htmlFor=" assuntoOption" className="form-label">Selecione o assunto</label><br/>
                         <select name=" assuntoOption" id="assunto" className="form-control" value={assunto}
                                 onChange={(e) => setAssunto(e.target.value)}>
+                            <option value="0">Selecione...</option>
                             {assuntos.map((assunto) => {
                                 return (<option key={assunto.id} value={assunto.id}>{assunto.descricao}</option>)
                             })}
@@ -263,6 +268,7 @@ function Home() {
                         <label htmlFor=" autorOption" className="form-label">Selecione o autor</label><br/>
                         <select name=" autorOption" id="autor" className="form-control" value={autor}
                                 onChange={(e) => setAutor(e.target.value)}>
+                            <option value="0">Selecione...</option>
                             {autores.map((autor) => {
                                 return (<option key={autor.id} value={autor.id}>{autor.nome}</option>)
                             })}
