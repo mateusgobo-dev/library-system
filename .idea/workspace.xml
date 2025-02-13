@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/docker-build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-client/src/pages/Home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/CarProfileConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/java/br/com/mgobo/api/config/LibraryProfileConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
