@@ -1,5 +1,6 @@
 services:
   library-db:
+    container_name: library-db
     image: postgres
     ports:
       - "5435:5432"
@@ -13,14 +14,15 @@ services:
     networks:
       - library_network
 
-
   library-profile:
+    container_name: library-profile
     image: library-profile:v1
+    entrypoint: ["/bin/sh", "-c", "serve -s build"]
     ports:
-      - "8085:8080"
+      - "8080:8080"
       - "3001:3000"
     environment:
-      - SPRING_PROFILE_ACTIVE=prod
+      - spring_profiles_active=prod
     depends_on:
       - library-db
     networks:

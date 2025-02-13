@@ -26,16 +26,6 @@ public class AutorControllerTest extends BaseIntegratedTest {
     @Autowired
     private AutorController autorController;
 
-    @BeforeAll
-    public static void setUpBeforeClass() throws Exception {
-        postgreSQLContainer.start();
-    }
-
-    @AfterAll
-    public static void tearDownAfterClass() throws Exception {
-        postgreSQLContainer.stop();
-    }
-
     @BeforeEach
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(autorController).build();

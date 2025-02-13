@@ -48,16 +48,6 @@ public class LivroControllerTest extends BaseIntegratedTest {
     @Autowired
     private LivroRepository livroRepository;
 
-    @BeforeAll
-    public static void setUpBeforeClass() throws Exception {
-        postgreSQLContainer.start();
-    }
-
-    @AfterAll
-    public static void tearDownAfterClass() throws Exception {
-        postgreSQLContainer.stop();
-    }
-
     @BeforeEach
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(livroController).build();

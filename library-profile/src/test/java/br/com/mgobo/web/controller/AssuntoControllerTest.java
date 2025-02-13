@@ -5,6 +5,7 @@ import br.com.mgobo.web.dto.AssuntoDto;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,16 +26,6 @@ public class AssuntoControllerTest extends BaseIntegratedTest {
 
     @Autowired
     private AssuntoController assuntoController;
-
-    @BeforeAll
-    public static void setUpBeforeClass() throws Exception {
-        postgreSQLContainer.start();
-    }
-
-    @AfterAll
-    public static void tearDownAfterClass() throws Exception {
-        postgreSQLContainer.stop();
-    }
 
     @BeforeEach
     public void setUp() throws Exception {

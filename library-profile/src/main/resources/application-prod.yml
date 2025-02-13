@@ -3,7 +3,7 @@ spring:
     name: library-profile
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://library-db:5435/library-db
+    url: jdbc:postgresql://library-db:5432/library-db
     password: 123
     username: sa
     hikari:
@@ -11,9 +11,11 @@ spring:
       pool-name: library-profile-hk
       minimum-idle: 10
       connection-timeout: 30000
+      max-lifetime: 60000
   jpa:
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   data:
     jdbc:
       dialect: postgresql

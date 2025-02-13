@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: library-profile
+    hikari:
+      maximum-pool-size: 10
+      pool-name: library-profile-hk
+      minimum-idle: 5
+      connection-timeout: 5000
+      max-lifetime: 5000
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    jdbc:
+      dialect: postgresql
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/library-db
+      driver-class-name: org.postgresql.Driver
+      username: sa
+      password: 123

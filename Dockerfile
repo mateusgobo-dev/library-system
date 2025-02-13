@@ -10,9 +10,10 @@ RUN apt-get update && \
     java -version && \
     node -v
 
-COPY library-profile/target/library-profile-0.0.1-SNAPSHOT.jar library-system/library-system.jar
-COPY library-system-client/build library-system/build
+COPY library-profile/target/library-profile-0.0.1-SNAPSHOT.jar library-system.jar
+COPY library-system-client/build build
+RUN npm install -g serve
 
-RUN printf 'cd library-system && java -jar library-system.jar && sleep 5000 && npm install -g serve && serve -s build' >> runnable.sh
+RUN printf 'echo "Iniciando react app" && serve -s build && java -jar library-system.jar' >> runnable.sh
 
 ENTRYPOINT ["sh", "runnable.sh"]

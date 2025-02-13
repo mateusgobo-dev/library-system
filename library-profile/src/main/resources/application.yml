@@ -11,9 +11,11 @@ spring:
       pool-name: library-profile-hk
       minimum-idle: 10
       connection-timeout: 30000
+      max-lifetime: 60000
   jpa:
     hibernate:
       ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   data:
     jdbc:
       dialect: postgresql

@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application-test.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AssuntoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/AutorControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/controller/LivroControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +32,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
@@ -57,6 +66,7 @@
     "JUnit.LivroControllerTest.executor": "Run",
     "JUnit.LivroControllerTest.testCreate.executor": "Debug",
     "JUnit.LivroControllerTest.testUpdate.executor": "Run",
+    "JUnit.TestSuite.executor": "Run",
     "Maven.library-profile [clean].executor": "Run",
     "Maven.library-profile [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -69,7 +79,7 @@
     "Spring Boot.LibraryProfileApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/mateus.gobo/github-repo/library-system/library-profile/src/main/resources",
+    "last_opened_file_path": "/home/mateusgobo/github-repo/library-system/library-profile/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,64 +116,71 @@
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
-    <configuration name="AssuntoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AssuntoControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AssuntoServiceTest" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AssuntoControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AutorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AutorControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.AutorControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AutorServiceTest.testFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LivroControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="PATTERN" value="br.com.mgobo.web.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
-      <option name="METHOD_NAME" value="testFindAll" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="br.com.mgobo.web.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.web.controller.LivroControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AutorServiceTest.testFindById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSuite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
+          <option name="PATTERN" value="br.com.mgobo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
-      <option name="METHOD_NAME" value="testFindById" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.mgobo" />
+      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.TestSuite" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="spring.profiles.active" value="test" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,7 +193,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -189,27 +208,27 @@
     </configuration>
     <list>
       <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-      <item itemvalue="JUnit.AssuntoServiceTest" />
-      <item itemvalue="JUnit.AutorServiceTest" />
-      <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
-      <item itemvalue="JUnit.AutorServiceTest.testFindById" />
+      <item itemvalue="JUnit.AssuntoControllerTest" />
+      <item itemvalue="JUnit.AutorControllerTest" />
+      <item itemvalue="JUnit.LivroControllerTest" />
+      <item itemvalue="JUnit.TestSuite" />
       <item itemvalue="Spring Boot.LibraryProfileApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.AssuntoServiceTest" />
-        <item itemvalue="JUnit.AutorServiceTest" />
-        <item itemvalue="JUnit.AutorServiceTest.testFindById" />
-        <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
+        <item itemvalue="JUnit.AutorControllerTest" />
+        <item itemvalue="JUnit.LivroControllerTest" />
+        <item itemvalue="JUnit.AssuntoControllerTest" />
+        <item itemvalue="JUnit.TestSuite" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -235,6 +254,7 @@
       <workItem from="1739233202837" duration="5849000" />
       <workItem from="1739281017852" duration="3083000" />
       <workItem from="1739356460498" duration="18491000" />
+      <workItem from="1739406032505" duration="7097000" />
     </task>
     <servers />
   </component>
