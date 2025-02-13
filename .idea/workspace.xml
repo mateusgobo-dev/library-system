@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f63627bf-c389-4eb3-a67c-8af30dd72eb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-profile/src/main/resources/application-prod.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/library-profile/src/test/java/br/com/mgobo/web/BaseIntegratedTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +23,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
@@ -41,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
     "JUnit.AssuntoControllerTest.deleteAll.executor": "Debug",
     "JUnit.AssuntoControllerTest.executor": "Run",
     "JUnit.AssuntoServiceTest.executor": "Run",
@@ -105,7 +105,7 @@
       <recent name="br.com.mgobo.api.entities" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AssuntoServiceTest">
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration name="AssuntoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-profile" />
       <extension name="coverage">
@@ -132,22 +132,6 @@
       <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
       <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AutorServiceTest.testDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="library-profile" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.mgobo.api.unit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.mgobo.api.unit" />
-      <option name="MAIN_CLASS_NAME" value="br.com.mgobo.api.unit.AutorServiceTest" />
-      <option name="METHOD_NAME" value="testDelete" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -191,21 +175,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       <item itemvalue="JUnit.AssuntoServiceTest" />
       <item itemvalue="JUnit.AutorServiceTest" />
-      <item itemvalue="JUnit.AutorServiceTest.testDelete" />
       <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
       <item itemvalue="JUnit.AutorServiceTest.testFindById" />
       <item itemvalue="Spring Boot.LibraryProfileApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.AssuntoServiceTest" />
         <item itemvalue="JUnit.AutorServiceTest" />
         <item itemvalue="JUnit.AutorServiceTest.testFindById" />
         <item itemvalue="JUnit.AutorServiceTest.testFindAll" />
-        <item itemvalue="JUnit.AutorServiceTest.testDelete" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +234,7 @@
       <workItem from="1739114245092" duration="13102000" />
       <workItem from="1739233202837" duration="5849000" />
       <workItem from="1739281017852" duration="3083000" />
-      <workItem from="1739356460498" duration="16574000" />
+      <workItem from="1739356460498" duration="18491000" />
     </task>
     <servers />
   </component>

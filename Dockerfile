@@ -15,4 +15,4 @@ COPY library-system-client/build library-system/build
 
 RUN printf 'cd library-system && java -jar library-system.jar && sleep 5000 && npm install -g serve && serve -s build' >> runnable.sh
 
-ENTRYPOINT ["runnable.sh", "sh"]
+ENTRYPOINT ["sh", "runnable.sh"]
